@@ -7,7 +7,7 @@ import {
   SvgImageWrapper,
 } from "./Components";
 import WriterForm from "./WriterForm";
-import Image from "./publish_image.svg";
+const Image = "./publish_image.svg";
 
 function SubscribeComponent() {
   const [text, setText] = React.useState("");
@@ -41,7 +41,7 @@ function SubscribeComponent() {
             a community of writers who are passionate about writing.
           </Paragragraph>
         </ParagraphWrapper>
-        <SvgImageWrapper src={Image} />
+        <SvgImageWrapper src={require(Image)} />
       </PageDeviderDiv>
       <PageDeviderDiv>
         <ParagraphWrapper>
