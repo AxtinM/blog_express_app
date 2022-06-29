@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "../styles/home.css";
 import Button from "@mui/material/Button";
-const ProfileImage = "../static/images/me_pic3.jpg";
-const MyResume = "../static/mohamed_attig_cv.pdf";
 import Typewriter from "typewriter-effect";
 import Loading from "../components/Loading";
-import BlogArtical from "../components/BlogArtical";
 import DownloadIcon from "@mui/icons-material/Download";
 import EnterComponent from "../components/EnterComponent";
 import SiteBranding from "../components/SiteBranding";
+const ProfileImage = "../static/images/me_pic3.jpg";
+const MyResume = "../static/mohamed_attig_cv.pdf";
 
 interface QuoteInterface {
   text: string;

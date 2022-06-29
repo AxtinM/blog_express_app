@@ -8,13 +8,13 @@ import {
   Element,
   ButtonChangeImg,
 } from "./ProfileComponents";
-const ProfileImg = "../../../static/images/ProfilePic.png";
 import { useSpring } from "react-spring";
 import { useSelector, useDispatch } from "react-redux";
 import { selectUser } from "../../../features/useSlices";
 import { logout } from "../../../features/useSlices";
 import { authClient } from "../../../client";
 import { clearStorage } from "../../../app/store";
+const ProfileImg = "../../../static/images/ProfilePic.png";
 
 export const useWindowSize = () => {
   const [size, setSize] = useState([0, 0]);
