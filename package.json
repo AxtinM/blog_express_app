@@ -6,8 +6,10 @@
     "node": ">=8.10.0"
   },
   "scripts": {
-    "start": "nodemon ./app.js",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "start": "node ./app.js",
+    "dev": "nodemon ./app.js",
+    "heroku-postbuild": "cd client && npm install && npm run build",
+    "build": "npm run build"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
