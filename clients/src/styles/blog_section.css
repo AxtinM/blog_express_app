@@ -1,0 +1,19 @@
+.blog-article {
+  width: 100%;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+}
+
+.blog-image {
+  width: 20em;
+  height: 20em;
+  object-fit: cover;
+  @media (max-width: 1000px) {
+    width: 5em;
+    height: 5em;
+  }
+}
+
+.box {
+  margin: 1em 0;
+}
