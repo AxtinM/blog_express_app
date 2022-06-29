@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "../styles/home.css";
 import Button from "@mui/material/Button";
-import ProfileImage from "../static/images/me_pic3.jpg";
-import MyResume from "../static/mohamed_attig_cv.pdf";
+const ProfileImage = "../static/images/me_pic3.jpg";
+const MyResume = "../static/mohamed_attig_cv.pdf";
 import Typewriter from "typewriter-effect";
 import Loading from "../components/Loading";
 import BlogArtical from "../components/BlogArtical";
@@ -19,7 +19,7 @@ export default function Home() {
   const onDownload = () => {
     const link = document.createElement("a");
     link.download = `download.pdf`;
-    link.href = MyResume;
+    link.href = require(MyResume);
     link.click();
   };
 
@@ -151,7 +151,7 @@ export default function Home() {
                   <img
                     id="about-image"
                     className="content-image"
-                    src={ProfileImage}
+                    src={require(ProfileImage)}
                     alt="Mohamed"
                   />
                   <figcaption>

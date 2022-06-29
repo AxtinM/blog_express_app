@@ -1,6 +1,6 @@
-import React, { useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import styled from "styled-components";
-import TitleLogo from "../static/images/title_logo.jpg";
+const TitleLogo = "../static/images/title_logo.jpg";
 
 const SliderElementH1 = styled.h1`
   font-size: 1.8em;
@@ -75,7 +75,7 @@ function SliderElement({ title, text, author, styles }) {
         maxWidth: "100%",
       }}
     >
-      <SliderElementImg rounded src={TitleLogo}></SliderElementImg>
+      <SliderElementImg rounded src={require(TitleLogo)}></SliderElementImg>
       <div
         className="slider-text"
         style={{

@@ -8,7 +8,7 @@ import {
   Element,
   ButtonChangeImg,
 } from "./ProfileComponents";
-import ProfileImg from "../../../static/images/ProfilePic.png";
+const ProfileImg = "../../../static/images/ProfilePic.png";
 import { useSpring } from "react-spring";
 import { useSelector, useDispatch } from "react-redux";
 import { selectUser } from "../../../features/useSlices";
@@ -41,7 +41,7 @@ function Profile() {
   });
 
   const user = useSelector(selectUser);
-  const [imageUrl, setImageUrl] = useState(ProfileImg);
+  const [imageUrl, setImageUrl] = useState(require(ProfileImg));
 
   useEffect(() => {
     setProfileMenu(false);
