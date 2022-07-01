@@ -1,6 +1,5 @@
 import { useRef, useEffect } from "react";
 import styled from "styled-components";
-const TitleLogo = "../static/images/title_logo.jpg";
 
 const SliderElementH1 = styled.h1`
   font-size: 1.8em;
@@ -46,11 +45,15 @@ const SliderElementImg = styled.img`
   }
 `;
 
-function SliderElement({ title, text, author, styles }) {
+function SliderElement({ data }) {
   const ref = useRef(null);
+
   useEffect(() => {
     console.log("width", ref.current ? ref.current.offsetWidth : 0);
   }, [ref.current]);
+
+  const path = data.imageHeadline.path.split("/");
+  const _len = path.length - 1;
 
   const LinkElementWrapper = styled.div`
     height: fit-content;
@@ -75,7 +78,10 @@ function SliderElement({ title, text, author, styles }) {
         maxWidth: "100%",
       }}
     >
-      <SliderElementImg rounded src={require(TitleLogo)}></SliderElementImg>
+      <SliderElementImg
+        rounded
+        src={`http://localhost:8000/images/${path[_len]}`}
+      ></SliderElementImg>
       <div
         className="slider-text"
         style={{
@@ -83,7 +89,7 @@ function SliderElement({ title, text, author, styles }) {
           marginRight: 20,
         }}
       >
-        <SliderElementH1>{title}</SliderElementH1>
+        <SliderElementH1>{data.title}</SliderElementH1>
         <span
           className="author-name"
           style={{
@@ -95,9 +101,9 @@ function SliderElement({ title, text, author, styles }) {
             alignItems: "center",
           }}
         >
-          By |<SliderAuthorName>{author}</SliderAuthorName>
+          By |<SliderAuthorName>{data.author}</SliderAuthorName>
         </span>
-        <SliderElementP>{text}</SliderElementP>
+        <SliderElementP>{data.overview}</SliderElementP>
       </div>
     </LinkElementWrapper>
   );

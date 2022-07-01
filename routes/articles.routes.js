@@ -7,6 +7,7 @@ const {
   createArticleController,
   getArticlesController,
   getArticleController,
+  getFeaturedArticlesController,
 } = require("../controllers/articles.controller");
 
 storage = multer.diskStorage({
@@ -34,5 +35,6 @@ const upload = multer({ storage: storage });
 router.post("/create", isAuth, upload.single("file"), createArticleController);
 router.get("/article/:id", getArticleController);
 router.get("/:num?", getArticlesController);
+router.get("/featured", getFeaturedArticlesController);
 
 module.exports = router;

@@ -82,3 +82,18 @@ module.exports.getArticleController = async (req, res) => {
     return res.status(500).send({ message: "Something went wrong" });
   }
 };
+
+module.exports.getFeaturedArticlesController = async (req, res) => {
+  try {
+    const articles = await Articles.find({ featured: true })
+      .sort("-date_created")
+      .limit(5)
+      .populate("author", "username _id");
+
+    return res.status(200).send({
+      articles,
+    });
+  } catch (error) {
+    return res.status(500).send({ message: "Something went wrong" });
+  }
+};

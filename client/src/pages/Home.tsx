@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/home.css";
 import Button from "@mui/material/Button";
 import Typewriter from "typewriter-effect";
@@ -22,7 +22,7 @@ export default function Home() {
     link.click();
   };
 
-  const getTime = (date) => {
+  const getTime = (date: Date) => {
     return `${
       date.getHours().toString().length === 1
         ? `0${date.getHours().toString()}`

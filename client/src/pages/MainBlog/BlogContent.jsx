@@ -16,6 +16,14 @@ import { useWindowSize } from "../../components/RightMenu/profileMenu/Profile";
 import { getArticle } from "../Blog";
 import { Link } from "react-router-dom";
 import Loading from "../../components/Loading";
+import { articleClient } from "../../client";
+
+const getFeaturedArticles = async () => {
+  const res = await articleClient.get("/featured");
+  const data = await res.data;
+  console.log("data \n ", data);
+  return data;
+};
 
 const DATA = [
   {
@@ -126,11 +134,19 @@ const SideWrapper = styled.div((props) => ({
 
 function MainBlog() {
   const [data, setData] = useState(null);
+  const [featuredData, setFeaturedData] = useState(null);
   const forwardRef = useRef(null);
 
   const [width, height] = useWindowSize();
   const [isThousand, setIsThousand] = useState(false);
   useEffect(() => {
+    getFeaturedArticles()
+      .then((res) => {
+        setFeaturedData(res.articles);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     getArticle(1)
       .then((res) => {
         setData(res.articles);
@@ -167,17 +183,29 @@ function MainBlog() {
           centeredSlides={true}
           pagination={{ clickable: true }}
         >
-          {DATA.map((e, i) => (
-            <SwiperSlide>
-              <SliderElement
-                title={e.title}
-                text={e.text}
-                author={e.author}
-                key={i}
-                styles={undefined}
-              />
-            </SwiperSlide>
-          ))}
+          {featuredData !== null ? (
+            featuredData.map((e, i) => (
+              <SwiperSlide>
+                <SliderElement data={data} key={i} />
+              </SwiperSlide>
+            ))
+          ) : (
+            <center
+              style={{
+                marginTop: "7em",
+              }}
+            >
+              <h1
+                style={{
+                  fontFamily: "spacy",
+                  fontWeight: "700",
+                  fontSize: "2.5em",
+                }}
+              >
+                no featured articles yet
+              </h1>
+            </center>
+          )}
         </Swiper>
       </SliderContainer>
       <MainWrapper>
