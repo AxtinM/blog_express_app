@@ -6,23 +6,18 @@ import Loading from "../components/Loading";
 import DownloadIcon from "@mui/icons-material/Download";
 import EnterComponent from "../components/EnterComponent";
 import SiteBranding from "../components/SiteBranding";
-const ProfileImage = "../static/images/me_pic3.jpg";
-const MyResume = "../static/mohamed_attig_cv.pdf";
-
-interface QuoteInterface {
-  text: string;
-  author?: string;
-}
+import ProfileImage from "../static/images/me_pic3.jpg";
+import MyResume from "../static/mohamed_attig_cv.pdf";
 
 export default function Home() {
   const onDownload = () => {
     const link = document.createElement("a");
     link.download = `download.pdf`;
-    link.href = require(MyResume);
+    link.href = MyResume;
     link.click();
   };
 
-  const getTime = (date: Date) => {
+  const getTime = (date) => {
     return `${
       date.getHours().toString().length === 1
         ? `0${date.getHours().toString()}`
@@ -37,7 +32,7 @@ export default function Home() {
   const date = new Date();
 
   const [time, setTime] = useState(getTime(date));
-  const [quote, setQuote] = useState<QuoteInterface | null>();
+  const [quote, setQuote] = useState();
   // const [isFetching, setIsFetching] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [onLanding, setOnLanding] = useState(true);
@@ -150,7 +145,7 @@ export default function Home() {
                   <img
                     id="about-image"
                     className="content-image"
-                    src={require(ProfileImage)}
+                    src={ProfileImage}
                     alt="Mohamed"
                   />
                   <figcaption>

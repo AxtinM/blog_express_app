@@ -16,6 +16,7 @@
     "@testing-library/react": "^13.0.1",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.26.1",
+    "cra-template-typescript": "^1.2.0",
     "draft-js": "^0.10.5",
     "draft-js-export-html": "^1.4.1",
     "draft-js-import-html": "^1.4.1",
