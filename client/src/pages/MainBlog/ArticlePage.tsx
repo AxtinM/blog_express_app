@@ -99,7 +99,7 @@ const getArticle = async (id: string) => {
     const data = await res.data;
     return data;
   } catch (err) {
-    alert(err);
+    console.log(err);
   }
 };
 
@@ -114,7 +114,7 @@ const ArticlePage = () => {
         setArticle(data.article);
         setPath(data.article.imageHeadline.path.split("/"));
       })
-      .catch((err) => alert(err));
+      .catch((err) => console.log(err));
   }, []);
 
   return article !== undefined ? (

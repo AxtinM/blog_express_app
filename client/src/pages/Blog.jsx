@@ -15,8 +15,7 @@ export const getArticle = async (num) => {
     const data = await res.data;
     return data;
   } catch (err) {
-    console.log(err);
-    alert("There is an Error getting articles");
+    console.log("There is an Error getting articles");
   }
 };
 

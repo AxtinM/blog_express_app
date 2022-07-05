@@ -153,7 +153,7 @@ function MainBlog() {
         console.log(data);
       })
       .catch((err) => {
-        alert(err);
+        console.log(err);
       });
   }, []);
 

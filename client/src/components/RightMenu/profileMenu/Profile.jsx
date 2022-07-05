@@ -14,7 +14,7 @@ import { selectUser } from "../../../features/useSlices";
 import { logout } from "../../../features/useSlices";
 import { authClient } from "../../../client";
 import { clearStorage } from "../../../app/store";
-const ProfileImg = "../../../static/images/ProfilePic.png";
+import ProfileImg from "../../../static/images/ProfilePic.png";
 
 export const useWindowSize = () => {
   const [size, setSize] = useState([0, 0]);
@@ -41,7 +41,7 @@ function Profile() {
   });
 
   const user = useSelector(selectUser);
-  const [imageUrl, setImageUrl] = useState(require(ProfileImg));
+  const [imageUrl, setImageUrl] = useState(ProfileImg);
 
   useEffect(() => {
     setProfileMenu(false);
@@ -69,7 +69,7 @@ function Profile() {
       const data = await res.data;
       await clearStorage(dispatch(logout()));
     } catch (err) {
-      alert("error loging out !");
+      console.log("error loging out !");
     }
   };
   const handleUpdate = async () => {
@@ -97,10 +97,9 @@ function Profile() {
       handleUpdate()
         .then((res) => {
           setImageUrl(res.image);
-          alert(res.message);
         })
         .catch((err) => {
-          alert(err);
+          console.log(err);
         });
       setIsImage(false);
     }

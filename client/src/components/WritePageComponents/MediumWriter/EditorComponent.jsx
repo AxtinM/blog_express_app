@@ -96,11 +96,9 @@ class App extends React.Component {
         },
       })
       .then((res) => {
-        alert("Success : \n", res);
         console.log(res);
       })
       .catch((err) => {
-        alert("Error : \n", err);
         console.log("Error");
       });
   }
