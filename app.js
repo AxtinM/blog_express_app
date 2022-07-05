@@ -25,9 +25,9 @@ app.use(express.static(path.resolve(__dirname, "client", "build")));
 
 app.use("/api", indexRoutes);
 
-// app.get("*", (req, res) => {
-//   res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-// });
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+});
 app.listen(app.get("port"), () => {
   console.log(`Server is running on port ${app.get("port")}`);
 });
