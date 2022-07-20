@@ -21,6 +21,7 @@ module.exports.signUpController = async (req, res) => {
         email,
         password,
       });
+
       user.save();
       return res.status(201).send({
         message: "User created successfully",
@@ -92,7 +93,7 @@ module.exports.signInController = async (req, res) => {
 
 module.exports.logoutController = async (req, res) => {
   try {
-    if (!req.user || req.token) {
+    if (!req.user || !req.token) {
       return res.status(401).send({
         message: "Something went wrong with token auth",
       });
@@ -123,7 +124,7 @@ module.exports.updateImageProfile = async (req, res) => {
     console.log("Request ------------ \n", req.body);
 
     await User.findByIdAndUpdate(user._id, {
-      img: {
+      image: {
         data: fs.readFileSync(
           path.join(__dirname, "../public/images/profile/", req.fileName)
         ),
@@ -136,6 +137,6 @@ module.exports.updateImageProfile = async (req, res) => {
       user: user,
     });
   } catch (err) {
-    res.status(400).send("Unsuccessfull attempt");
+    res.status(400).send({ message: "Unsuccessfull attempt" });
   }
 };

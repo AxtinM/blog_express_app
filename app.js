@@ -27,7 +27,13 @@ if (process.env.NODE_ENV == "production") {
   app.use(express.static("./client/build"));
 }
 
-app.get("*", (req, res) => {
+app.use("/blog/*", (req, res) => {
+  console.log("--------------------Hello----------------------------");
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
+
+app.use("/*", (req, res) => {
+  console.log("----------------------------------------------------");
   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
 

@@ -59,18 +59,14 @@ module.exports.getArticlesController = async (req, res) => {
       articles,
     });
   } catch (error) {
-    return res.send(
-      {
-        message: "Something went wrong",
-      },
-      500
-    );
+    return res.status(500).send({
+      message: "Something went wrong",
+    });
   }
 };
 
 module.exports.getArticleController = async (req, res) => {
   try {
-    console.log("first");
     const article = await Articles.findById(req.params.id)
       .populate("author", "name username _id")
       .populate("comments.author", "name username _id");

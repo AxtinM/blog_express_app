@@ -30,6 +30,14 @@
     /* Completeness */
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
-  "include": ["src"],
+  "include": [
+    "./src/*.ts",
+    "./src/*.tsx",
+    "./src/*.js",
+    "./src/*.jsx",
+    "./src/*.d.ts",
+    "./src/*.d.tsx",
+    "./src/*.json"
+  ],
   "exclude": ["node_modules", "build"]
 }

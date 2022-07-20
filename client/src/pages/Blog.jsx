@@ -52,9 +52,16 @@ function Blog() {
         console.log("ERR : ", err);
       });
 
-    console.log("now num is :::: ", num);
+    console.log("now num is ", num);
     // console.log(data);
   }, []);
+
+  useEffect(() => {
+    console.log("data changed");
+    if (data) {
+      console.log("data is ", data);
+    }
+  }, [data]);
 
   return data === null || num == undefined ? (
     <Loading />
@@ -73,9 +80,16 @@ function Blog() {
           />
           {data.length === 5 ? (
             <ArticlePaginationBtn
-              onClick={() => {
+              onClick={async () => {
                 forwardRef.current.click();
-                window.location.reload();
+                console.log(parseInt(num) + 1);
+                getArticle(parseInt(num) + 1)
+                  .then((res) => {
+                    setData(res.articles);
+                  })
+                  .catch((err) => {
+                    console.log("ERR : ", err);
+                  });
               }}
             />
           ) : (
@@ -92,7 +106,14 @@ function Blog() {
               <ArticlePaginationBtnRight
                 onClick={() => {
                   prevRef.current.click();
-                  window.location.reload();
+                  console.log(parseInt(num) - 1);
+                  getArticle(parseInt(num) - 1)
+                    .then((res) => {
+                      setData(res.articles);
+                    })
+                    .catch((err) => {
+                      console.log("ERR : ", err);
+                    });
                 }}
               />
             </>

@@ -14,7 +14,7 @@ import { selectUser } from "../../../features/useSlices";
 import { logout } from "../../../features/useSlices";
 import { authClient } from "../../../client";
 import { clearStorage } from "../../../app/store";
-import ProfileImg from "../../../static/images/ProfilePic.png";
+const ProfileImg = "/images/profile/default.png";
 
 export const useWindowSize = () => {
   const [size, setSize] = useState([0, 0]);
@@ -33,6 +33,8 @@ function Profile() {
   const [profileMenu, setProfileMenu] = useState(false);
   const [isImage, setIsImage] = useState(false);
   const [width, height] = useWindowSize();
+
+  console.log("ProfileImg : \n", ProfileImg);
 
   const ProfileMenuSpring = useSpring({
     transform: profileMenu ? "translateY(5.5em)" : "translateY(-5em)",
@@ -67,9 +69,11 @@ function Profile() {
         }
       );
       const data = await res.data;
-      await clearStorage(dispatch(logout()));
+      console.log(data);
+      dispatch(logout());
+      await clearStorage();
     } catch (err) {
-      console.log("error loging out !");
+      console.log("error logging out !");
     }
   };
   const handleUpdate = async () => {
