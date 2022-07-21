@@ -1,5 +1,3 @@
-import ReactDOM from "react-dom/client";
-import reportWebVitals from "./reportWebVitals";
 import MainRouter from "./MainRouter";
 import { Provider } from "react-redux";
 import { createRoot } from "react-dom/client";

@@ -59,6 +59,7 @@ export default function Home() {
     setTimeout(() => {
       setTime(getTime(new Date()));
     }, 10000);
+    // eslint-disable-next-line
   }, []);
 
   return (

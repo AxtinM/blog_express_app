@@ -1,11 +1,9 @@
-import { useRef, useEffect, RefAttributes } from "react";
+import { useRef, useEffect } from "react";
 import styled from "styled-components";
 import { useSpring, animated } from "react-spring";
 import { useState } from "react";
-import { Link, LinkProps } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../styles/navbar.css";
-import { MutableRefObject } from "react";
-import { ForwardRefExoticComponent } from "react";
 
 const Main = styled.nav`
   display: flex;

@@ -22,7 +22,6 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectAuthState,
-  selectUser,
   selectError,
   handleError,
 } from "../../features/useSlices";
@@ -47,7 +46,6 @@ const HeadContainer = styled.div`
 function MainBlog() {
   // redux
   const isLoggedIn = useSelector(selectAuthState);
-  const user = useSelector(selectUser);
   const error = useSelector(selectError);
   const dispatch = useDispatch();
 
@@ -69,6 +67,7 @@ function MainBlog() {
         }, 1000);
       }, 3000);
     }
+    // eslint-disable-next-line
   }, [error]);
 
   const AuthModalSpring = useSpring({

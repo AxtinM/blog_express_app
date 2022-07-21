@@ -1,4 +1,3 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import { selectAuthState, selectUser } from "../../features/useSlices";
 import LogRegComponent from "../../components/WritePageComponents/LogRegComponents/LogRegComponent";
@@ -18,6 +17,7 @@ function WriteArticle() {
         setAuthor(true);
       }
     }
+    // eslint-disable-next-line
   }, [isLoggedIn]);
 
   return isLoggedIn ? (

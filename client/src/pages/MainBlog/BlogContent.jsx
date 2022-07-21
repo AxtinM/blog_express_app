@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import SliderElement from "../../components/SliderElement";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from "swiper";
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import BlogAricleElement from "../../components/BlogAricleElement";
 // Import Swiper styles
 import "swiper/css";
@@ -24,29 +24,6 @@ const getFeaturedArticles = async () => {
   console.log("data \n ", data);
   return data;
 };
-
-const DATA = [
-  {
-    title: "New Tech And The Old Ways",
-    text: "This week on Hackaday, we featured a project that tickled my nostalgia bone, and proved that there are cool opportunities when bringing new tech to old problems. Let me explain.",
-    author: "Jorge Hamilton",
-  },
-  {
-    title: "Our First Hackathon",
-    text: "Today we hosted our first hackathon, and we were very excited to see what we could do with the tools we had. We had a lot of fun, and we learned a lot.",
-    author: "Kent",
-  },
-  {
-    title: "Ways to Learn",
-    text: "We learned a lot about how to learn, and how to learn faster. We also learned about how to learn, and how to learn faster.",
-    author: "Zachary",
-  },
-  {
-    title: "How to Tell if a Thing is a Thing",
-    text: "We learned a lot about how to tell if a thing is a thing, and how to tell if a thing is a thing. We also learned about how to tell if a thing is a thing, and how to tell if a thing is a thing.",
-    author: "Bobby",
-  },
-];
 
 const MainWrapper = styled.div`
   display: flex;
@@ -128,15 +105,11 @@ const SideWrapper = styled.div((props) => ({
   },
 }));
 
-// const SideBox = styled.div((props) => ({
-//   height
-// }));
-
 function MainBlog() {
   const [data, setData] = useState(null);
   const [featuredData, setFeaturedData] = useState(null);
   const forwardRef = useRef(null);
-
+  // eslint-disable-next-line
   const [width, height] = useWindowSize();
   const [isThousand, setIsThousand] = useState(false);
   useEffect(() => {
@@ -150,22 +123,21 @@ function MainBlog() {
     getArticle(1)
       .then((res) => {
         setData(res.articles);
-        console.log(data);
       })
       .catch((err) => {
         console.log(err);
       });
+    // eslint-disable-next-line no-use-before-define
   }, []);
 
   useEffect(() => {
     if (width < 1000) {
       setIsThousand(true);
-      console.log("first");
     } else {
       setIsThousand(false);
-      console.log("second");
     }
-  });
+    // eslint-disable-next-line no-use-before-define
+  }, [width]);
 
   return (
     <>

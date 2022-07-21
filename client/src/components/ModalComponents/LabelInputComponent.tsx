@@ -1,4 +1,3 @@
-import React from "react";
 import {
   ModalLable,
   ModalInput,
@@ -26,7 +25,7 @@ function LabelInputComponent({
         onChange={onChange}
       />
 
-      {text != undefined ? (
+      {text !== undefined ? (
         <ModalChangePassText>{text}</ModalChangePassText>
       ) : (
         ""

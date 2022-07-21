@@ -45,15 +45,13 @@ function Blog() {
   useEffect(() => {
     getArticle(num)
       .then((res) => {
-        // console.log(res.articles);
         setData(res.articles);
       })
       .catch((err) => {
         console.log("ERR : ", err);
       });
 
-    console.log("now num is ", num);
-    // console.log(data);
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -63,7 +61,7 @@ function Blog() {
     }
   }, [data]);
 
-  return data === null || num == undefined ? (
+  return data === null || num === undefined ? (
     <Loading />
   ) : (
     <MainWrapper style={{ padding: "3em 0" }}>
@@ -96,7 +94,7 @@ function Blog() {
             <></>
           )}
 
-          {num != 1 ? (
+          {num !== 1 ? (
             <>
               <Link
                 to={`/blog/${parseInt(num) - 1}`}

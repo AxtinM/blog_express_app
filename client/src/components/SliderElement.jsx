@@ -50,6 +50,7 @@ function SliderElement({ data }) {
 
   useEffect(() => {
     console.log("width", ref.current ? ref.current.offsetWidth : 0);
+    // eslint-disable-next-line
   }, [ref.current]);
 
   const path = data.imageHeadline.path.split("/");

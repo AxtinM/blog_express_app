@@ -115,6 +115,7 @@ const ArticlePage = () => {
         setPath(data.article.imageHeadline.path.split("/"));
       })
       .catch((err) => console.log(err));
+    // eslint-disable-next-line
   }, []);
 
   return article !== undefined ? (

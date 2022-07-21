@@ -2,7 +2,6 @@ import styled from "styled-components";
 import {
   SliderElementImg,
   SliderElementH1,
-  SliderElementP,
   SliderAuthorName,
 } from "./SliderElement";
 

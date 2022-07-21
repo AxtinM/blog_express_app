@@ -207,12 +207,7 @@ function AuthModalMenu({
               style={{ color: "#FF2E63" }}
               onClick={async () => {
                 try {
-                  const res = await handleRegister(
-                    email,
-                    password,
-                    username,
-                    name
-                  );
+                  await handleRegister(email, password, username, name);
                   setRegisterBtn(!registerBtn);
                   setLoginBtn(!loginBtn);
                   setEmail("");

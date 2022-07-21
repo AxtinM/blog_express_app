@@ -32,6 +32,7 @@ export const useWindowSize = () => {
 function Profile() {
   const [profileMenu, setProfileMenu] = useState(false);
   const [isImage, setIsImage] = useState(false);
+  // eslint-disable-next-line
   const [width, height] = useWindowSize();
 
   console.log("ProfileImg : \n", ProfileImg);
@@ -107,6 +108,7 @@ function Profile() {
         });
       setIsImage(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isImage]);
 
   return (

@@ -10,16 +10,6 @@ const StickElement = styled(animated.span)`
   border-radius: 5px;
 `;
 
-const VerticleStickElement = styled(animated.span)`
-  height: 4px;
-  width: 1.5rem;
-  background-color: #fff;
-  display: block;
-  margin: 5px 0;
-  border-radius: 5px;
-  transition: rotate(90deg);
-`;
-
 const MenuWrapper = styled(animated.div)`
   height: fit-content;
   width: 2rem;
