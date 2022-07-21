@@ -24,13 +24,9 @@ app.set("port", process.env.PORT || 8000);
 app.use("/api", indexRoutes);
 
 if (process.env.NODE_ENV == "production") {
-  app.use(express.static("./client/build"));
+  console.log("production");
+  app.use(express.static(path.join(__dirname, "client", "build")));
 }
-
-app.use("/blog/*", (req, res) => {
-  console.log("--------------------Hello----------------------------");
-  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
 
 app.use("/*", (req, res) => {
   console.log("----------------------------------------------------");
