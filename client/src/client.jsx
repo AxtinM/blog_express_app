@@ -1,6 +1,7 @@
 import axios from "axios";
+import configData from "./config";
 
-const url = process.env.REACT_APP_API_URL;
+const url = configData.REACT_APP_API_URL;
 
 export const authClient = axios.create({
   baseURL: `${url}/auth`,
