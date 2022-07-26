@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+    // Json and JavaScript files are processed with tsconfig.json
+    "resolveJsonModule": true,
+
     /* Language and Environment */
     "target": "es2016",
     "jsx": "react-jsx",

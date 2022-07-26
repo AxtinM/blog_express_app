@@ -1,4 +1,5 @@
 {
   "PORT": "3000",
-  "REACT_APP_API_URL": "https://axton-blog.azurewebsites.net/api"
+  "REACT_APP_API_URL": "https://axton-blog.azurewebsites.net/api",
+  "BASE_URL": "https://axton-blog.azurewebsites.net"
 }

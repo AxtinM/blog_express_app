@@ -1,5 +1,8 @@
 import { useRef, useEffect } from "react";
 import styled from "styled-components";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import configData from "../config";
 
 const SliderElementH1 = styled.h1`
   font-size: 1.8em;
@@ -81,7 +84,7 @@ function SliderElement({ data }) {
     >
       <SliderElementImg
         rounded
-        src={`http://localhost:8000/images/${path[_len]}`}
+        src={`${configData.BASE_URL}/images/${path[_len]}`}
       ></SliderElementImg>
       <div
         className="slider-text"

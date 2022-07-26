@@ -4,6 +4,9 @@ import { articleClient } from "../../client";
 import parse from "html-react-parser";
 import styled from "styled-components";
 import "../../styles/page_article.css";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import configData from "../../config";
 
 const ArticleWrapper = styled.div`
   align-self: center;
@@ -124,7 +127,7 @@ const ArticlePage = () => {
         <HeaderTitle>{article.title}</HeaderTitle>
         {path !== undefined ? (
           <Image
-            src={`http://localhost:8000/images/${path[path.length - 1]}`}
+            src={`${configData.BASE_URL}/images/${path[path.length - 1]}`}
           />
         ) : null}
       </HeaderDiv>

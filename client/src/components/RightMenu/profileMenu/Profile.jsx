@@ -14,7 +14,11 @@ import { selectUser } from "../../../features/useSlices";
 import { logout } from "../../../features/useSlices";
 import { authClient } from "../../../client";
 import { clearStorage } from "../../../app/store";
-const ProfileImg = "/images/profile/default.png";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import configData from "../../../config";
+
+const ProfileImg = `${configData.BASE_URL}/images/profile/default.png`;
 
 export const useWindowSize = () => {
   const [size, setSize] = useState([0, 0]);
@@ -34,8 +38,6 @@ function Profile() {
   const [isImage, setIsImage] = useState(false);
   // eslint-disable-next-line
   const [width, height] = useWindowSize();
-
-  console.log("ProfileImg : \n", ProfileImg);
 
   const ProfileMenuSpring = useSpring({
     transform: profileMenu ? "translateY(5.5em)" : "translateY(-5em)",

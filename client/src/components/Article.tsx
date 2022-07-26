@@ -2,6 +2,9 @@ import styled from "styled-components";
 import parse from "html-react-parser";
 import "../styles/article.css";
 import { NavLink } from "react-router-dom";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import configData from "../config";
 
 const ArticleLocalWrapper = styled.div`
   height: fit-content;
@@ -67,7 +70,7 @@ function Article(props) {
   const _len: number = path.length - 1;
   return (
     <ArticleLocalWrapper>
-      <ArticleImg src={`http://localhost:8000/images/${path[_len]}`} />
+      <ArticleImg src={`${configData.BASE_URL}/images/${path[_len]}`} />
       <ArticleContentWrapper>
         <ArticleHeader>{props.data.title}</ArticleHeader>
         <ArticleUnderHeaderDiv>

@@ -4,6 +4,9 @@ import {
   SliderElementH1,
   SliderAuthorName,
 } from "./SliderElement";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import configData from "../config";
 
 const BlogArticleWrapper = styled.div`
   display: flex;
@@ -24,7 +27,7 @@ function BlogAricleElement({ data }) {
   const _len: number = path.length - 1;
   return (
     <BlogArticleWrapper>
-      <SliderElementImg src={`http://localhost:8000/images/${path[_len]}`} />
+      <SliderElementImg src={`${configData.BASE_URL}/images/${path[_len]}`} />
       <TextContentWrapper>
         {/* @ts-ignore */}
         <SliderElementH1>{data.title}</SliderElementH1>
