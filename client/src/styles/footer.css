@@ -1,0 +1,9 @@
+.footer-element {
+  font-size: calc(1rem + 0.5vw);
+  font-weight: bold;
+  font-family: "spacy";
+  text-align: left;
+  color: #fff;
+  margin: 5px 0;
+  width: fit-content;
+}

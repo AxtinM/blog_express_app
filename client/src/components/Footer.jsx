@@ -1,5 +1,6 @@
-import React from "react";
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
+import "../styles/footer.css";
 
 const FooterWrapper = styled.div`
   width: 100%;
@@ -17,7 +18,7 @@ const FooterDivisionWrapper = styled.div`
 `;
 
 const FooterAndromeda = styled.h3`
-  font-size: calc(40px + 2vw);
+  font-size: calc(2.4rem + 1.3vw);
   color: #00adb5;
   text-align: center;
   font-family: "spacy";
@@ -31,21 +32,12 @@ const FooterLinksDiv = styled.div`
   flex-grow: 2;
 `;
 
-const FooterLink = styled.a`
-  font-size: 23px;
-  font-weight: bold;
-  font-family: "spacy";
-  text-align: left;
-  color: #fff;
-  margin: 5px 0;
-  width: fit-content;
-`;
 const EmptyDiv = styled.div`
   flex-grow: 2;
 `;
 
 const FooterCopyWriteText = styled.p`
-  font-size: 15px;
+  font-size: calc(0.6rem + 0.5vw);
   font-weight: light;
   font-family: "spacy";
   text-align: center;
@@ -57,10 +49,15 @@ function Footer() {
       <FooterDivisionWrapper>
         <FooterAndromeda>(Ax)Blog</FooterAndromeda>
         <FooterLinksDiv>
-          <FooterLink href="#">Blog</FooterLink>
-          <FooterLink href="#">About</FooterLink>
-          <FooterLink href="#">Contact Us</FooterLink>
-          <FooterLink href="#">Donate</FooterLink>
+          <NavLink to="/blog/1" className="footer-element">
+            Blog
+          </NavLink>
+          <NavLink to="/attigmohamed" className="footer-element">
+            About
+          </NavLink>
+          <NavLink to="#" className="footer-element">
+            Donate
+          </NavLink>
         </FooterLinksDiv>
         <EmptyDiv />
       </FooterDivisionWrapper>

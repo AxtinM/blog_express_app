@@ -56,7 +56,7 @@ const SliderContainer = styled.div`
     width: 90%;
   }
   @media (max-width: 1080px) {
-    width: 100%;
+    width: 98%;
   }
 `;
 
@@ -102,6 +102,7 @@ const SideWrapper = styled.div((props) => ({
   "@media (max-width: 1000px)": {
     margin: "0 auto",
     width: "70%",
+    marginBottom: "2em",
   },
 }));
 
@@ -186,7 +187,7 @@ function MainBlog() {
           <BlogHeaderWrapper>
             <BlogHeader>Recent Articles</BlogHeader>
           </BlogHeaderWrapper>
-          <BlogHeaderDevider></BlogHeaderDevider>
+          <BlogHeaderDevider />
           {data !== null ? (
             data.map((data, i) => <BlogAricleElement data={data} key={i} />)
           ) : (

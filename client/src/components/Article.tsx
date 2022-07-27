@@ -5,11 +5,20 @@ import { NavLink } from "react-router-dom";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import configData from "../config";
+import {
+  ReactElement,
+  JSXElementConstructor,
+  ReactFragment,
+  ReactPortal,
+} from "react";
 
 const ArticleLocalWrapper = styled.div`
   height: fit-content;
   width: 45rem;
   margin: 1em auto;
+  @media (max-width: 750px) {
+    width: 95%;
+  }
 `;
 
 const ArticleImg = styled.img`
@@ -19,6 +28,9 @@ const ArticleImg = styled.img`
   background-position: center center;
   overflow: hidden;
   margin: 0 0;
+  @media (max-width: 750px) {
+    width: 99%;
+  }
 `;
 
 const ArticleContentWrapper = styled.div`
@@ -31,7 +43,7 @@ const ArticleContentWrapper = styled.div`
 `;
 
 const ArticleHeader = styled.h1`
-  font-size: 2em;
+  font-size: calc(1vw + 0.9em);
   font-weight: 700;
   font-family: spacy;
   color: #fff;
@@ -48,7 +60,7 @@ const ArticleUnderHeaderDiv = styled.div`
 `;
 
 const ArticleUnderHeaderP = styled.p`
-  font-size: 1rem;
+  font-size: calc(0.4vw + 0.6em);
   font-family: spacy;
   color: #ff2e63;
 `;
@@ -64,7 +76,30 @@ const ArticleMainContentDiv = styled.div`
   box-sizing: border-box;
 `;
 
-function Article(props) {
+function Article(props: {
+  data: {
+    imageHeadline: { path: string };
+    title:
+      | string
+      | number
+      | boolean
+      | ReactElement<any, string | JSXElementConstructor<any>>
+      | ReactFragment
+      | ReactPortal;
+    author: {
+      username:
+        | string
+        | number
+        | boolean
+        | ReactElement<any, string | JSXElementConstructor<any>>
+        | ReactFragment
+        | ReactPortal;
+    };
+    comments: string | any[];
+    content: string;
+    _id: any;
+  };
+}) {
   const path: any = props.data.imageHeadline.path.split("/");
   // console.log(props.data);
   const _len: number = path.length - 1;
@@ -101,7 +136,7 @@ function Article(props) {
           style={{
             color: "#ff2e63",
             margin: "0 1em",
-            fontSize: "1.1em",
+            fontSize: "calc(0.4vw + 0.6em)",
             fontFamily: "spacy",
           }}
         >

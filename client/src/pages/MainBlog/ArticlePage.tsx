@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { articleClient } from "../../client";
 import parse from "html-react-parser";
 import styled from "styled-components";
-import "../../styles/page_article.css";
+import "../../styles/article.css";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import configData from "../../config";

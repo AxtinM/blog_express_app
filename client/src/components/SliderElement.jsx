@@ -42,9 +42,9 @@ const SliderElementImg = styled.img`
   height: 200px;
   border-radius: ${(props) => (props.rounded ? "10px" : "0")};
   object-fit: cover;
-  @media (max-width: 850px) {
-    width: 200px;
-    height: 200px;
+  @media (max-width: 550px) {
+    width: 90%;
+    height: 85%;
   }
 `;
 

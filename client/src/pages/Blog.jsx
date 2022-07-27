@@ -22,7 +22,7 @@ export const getArticle = async (num) => {
 const ArticleWrapper = styled.div`
   flex-grow: 1;
   @media (max-width: 1000px) {
-    flex-grow: 4;
+    width: 100%;
   }
 `;
 
@@ -55,10 +55,7 @@ function Blog() {
   }, []);
 
   useEffect(() => {
-    console.log("data changed");
-    if (data) {
-      console.log("data is ", data);
-    }
+    console.log("...");
   }, [data]);
 
   return data === null || num === undefined ? (
