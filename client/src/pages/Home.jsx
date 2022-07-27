@@ -7,7 +7,9 @@ import DownloadIcon from "@mui/icons-material/Download";
 import EnterComponent from "../components/EnterComponent";
 import SiteBranding from "../components/SiteBranding";
 import ProfileImage from "../static/images/me_pic3.jpg";
-import MyResume from "../static/mohamed_attig_cv.pdf";
+import configData from "../config";
+
+const MyResume = `${configData.BASE_URL}/resumes/mohamed_attig_cv.pdf`;
 
 export default function Home() {
   const onDownload = () => {

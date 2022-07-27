@@ -50,6 +50,8 @@ const SliderElementImg = styled.img`
 
 function SliderElement({ data }) {
   const ref = useRef(null);
+  console.log("----------------");
+  console.log(data);
 
   useEffect(() => {
     console.log("width", ref.current ? ref.current.offsetWidth : 0);
@@ -70,7 +72,7 @@ function SliderElement({ data }) {
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
-      margin: 30px 0;
+      margin: 0;
     }
   `;
 
@@ -97,15 +99,16 @@ function SliderElement({ data }) {
         <span
           className="author-name"
           style={{
-            fontSize: "0.6em",
+            fontSize: "0.8em",
             fontWeight: "300",
             fontFamily: "spacy",
             display: "flex",
             justifyContent: "flex-start",
             alignItems: "center",
+            marginLeft: "0.8em",
           }}
         >
-          By |<SliderAuthorName>{data.author}</SliderAuthorName>
+          By |<SliderAuthorName>{data.author.username}</SliderAuthorName>
         </span>
         <SliderElementP>{data.overview}</SliderElementP>
       </div>

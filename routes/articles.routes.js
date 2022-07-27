@@ -34,7 +34,7 @@ const upload = multer({ storage: storage });
 
 router.post("/create", isAuth, upload.single("file"), createArticleController);
 router.get("/article/:id", getArticleController);
-router.get("/:num?", getArticlesController);
 router.get("/featured", getFeaturedArticlesController);
+router.get("/:num?", getArticlesController);
 
 module.exports = router;

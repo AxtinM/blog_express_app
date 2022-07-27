@@ -40,12 +40,9 @@ module.exports.getArticlesController = async (req, res) => {
       num = 1;
     } else {
       if (isNaN(req.params.num)) {
-        return res.send(
-          {
-            message: "Invalid Url",
-          },
-          409
-        );
+        return res.status(409).send({
+          message: "Invalid Url",
+        });
       }
       num = parseInt(req.params.num);
     }

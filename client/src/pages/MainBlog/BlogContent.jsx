@@ -21,7 +21,6 @@ import { articleClient } from "../../client";
 const getFeaturedArticles = async () => {
   const res = await articleClient.get("/featured");
   const data = await res.data;
-  console.log("data \n ", data);
   return data;
 };
 
@@ -157,7 +156,7 @@ function MainBlog() {
           pagination={{ clickable: true }}
         >
           {featuredData !== null ? (
-            featuredData.map((e, i) => (
+            featuredData.map((data, i) => (
               <SwiperSlide>
                 <SliderElement data={data} key={i} />
               </SwiperSlide>
