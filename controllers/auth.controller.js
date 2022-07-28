@@ -81,6 +81,7 @@ module.exports.signInController = async (req, res) => {
         isAuthor: user.isAuthor,
         isAdmin: user.isAdmin,
         token: token,
+        image: user.image,
       },
     });
   } catch (error) {
@@ -120,20 +121,20 @@ module.exports.logoutController = async (req, res) => {
 
 module.exports.updateImageProfile = async (req, res) => {
   try {
+    const file = req.file;
     const user = req.user;
-    console.log("Request ------------ \n", req.body);
+
+    const path = file.path.split("/");
+    delete file.destination;
+    file.path = path.slice(path.indexOf("images")).join("/");
 
     await User.findByIdAndUpdate(user._id, {
-      image: {
-        data: fs.readFileSync(
-          path.join(__dirname, "../public/images/profile/", req.fileName)
-        ),
-        contentType: req.fileMime,
-      },
+      image: file,
     });
+
     res.status(200).send({
       message: "image uploaded successfully",
-      image: `images/profile/${req.fileName}`,
+      image: file.path,
       user: user,
     });
   } catch (err) {

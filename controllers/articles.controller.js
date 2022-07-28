@@ -6,6 +6,10 @@ module.exports.createArticleController = async (req, res) => {
     const file = req.file;
     const user = req.user;
 
+    const path = file.path.split("/");
+    delete file.destination;
+    file.path = path.slice(path.indexOf("images")).join("/");
+
     console.log(file);
 
     const article = new Articles({

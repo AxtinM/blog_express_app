@@ -100,12 +100,10 @@ function Article(props: {
     _id: any;
   };
 }) {
-  const path: any = props.data.imageHeadline.path.split("/");
-  // console.log(props.data);
-  const _len: number = path.length - 1;
+  const path: string = props.data.imageHeadline.path;
   return (
     <ArticleLocalWrapper>
-      <ArticleImg src={`${configData.BASE_URL}/images/${path[_len]}`} />
+      <ArticleImg src={`${configData.BASE_URL}/${path}`} />
       <ArticleContentWrapper>
         <ArticleHeader>{props.data.title}</ArticleHeader>
         <ArticleUnderHeaderDiv>

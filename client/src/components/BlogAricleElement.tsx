@@ -31,12 +31,11 @@ const TextContentWrapper = styled.div`
 `;
 
 function BlogAricleElement({ data }) {
-  const path: any = data.imageHeadline.path.split("/");
-  const _len: number = path.length - 1;
+  const path: string = data.imageHeadline.path;
   return (
     <NavLink to={`/article/${data._id}`}>
       <BlogArticleWrapper>
-        <SliderElementImg src={`${configData.BASE_URL}/images/${path[_len]}`} />
+        <SliderElementImg src={`${configData.BASE_URL}/${path}`} />
         <TextContentWrapper>
           {/* @ts-ignore */}
           <SliderElementH1>{data.title}</SliderElementH1>

@@ -50,16 +50,9 @@ function Profile() {
 
   useEffect(() => {
     setProfileMenu(false);
-    // console.log(user);
   }, [width]);
 
   const inputRef = useRef(null);
-
-  // useEffect(() => {
-  //   if (imageUrl) {
-  //     setImageUrl(imageUrl);
-  //   }
-  // }, [imageUrl]);
 
   const dispatch = useDispatch();
   const handleLogout = async () => {
@@ -98,6 +91,12 @@ function Profile() {
       console.log("err : ", err);
     }
   };
+
+  useEffect(() => {
+    if (user.user.image) {
+      setImageUrl(user.user.image.path);
+    }
+  }, []);
 
   useEffect(() => {
     if (isImage === true) {

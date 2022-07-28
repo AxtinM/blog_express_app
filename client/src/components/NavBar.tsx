@@ -75,20 +75,6 @@ function NavBar() {
   const aboutRef = useRef<any>();
   const writeRef = useRef<any>();
 
-  useEffect(() => {
-    if (
-      homeRef.current !== null &&
-      blogRef.current !== null &&
-      aboutRef.current !== null &&
-      writeRef.current !== null
-    ) {
-      console.log(homeRef.current);
-      console.log(blogRef.current);
-      console.log(aboutRef.current);
-      console.log(writeRef.current);
-    }
-  }, []);
-
   return (
     <Main>
       <NavBarContainer>

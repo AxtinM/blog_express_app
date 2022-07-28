@@ -50,16 +50,13 @@ const SliderElementImg = styled.img`
 
 function SliderElement({ data }) {
   const ref = useRef(null);
-  console.log("----------------");
-  console.log(data);
 
   useEffect(() => {
     console.log("width", ref.current ? ref.current.offsetWidth : 0);
     // eslint-disable-next-line
   }, [ref.current]);
 
-  const path = data.imageHeadline.path.split("/");
-  const _len = path.length - 1;
+  const path = data.imageHeadline.path;
 
   const LinkElementWrapper = styled.div`
     height: fit-content;
@@ -86,7 +83,7 @@ function SliderElement({ data }) {
     >
       <SliderElementImg
         rounded
-        src={`${configData.BASE_URL}/images/${path[_len]}`}
+        src={`${configData.BASE_URL}/${path}`}
       ></SliderElementImg>
       <div
         className="slider-text"
