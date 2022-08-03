@@ -11,6 +11,7 @@ const SearchWrapper = styled.input`
   width: 100%;
   height: 1.5em;
   border: 3px solid #fff;
+  color: #fff;
   border-radius: 5px;
   background-color: inherit;
   padding: 20px 15px;

@@ -14,6 +14,7 @@ import {
 
 const ArticleLocalWrapper = styled.div`
   height: fit-content;
+  color: #fff;
   width: 45rem;
   margin: 1em auto;
   @media (max-width: 750px) {
@@ -36,7 +37,7 @@ const ArticleImg = styled.img`
 const ArticleContentWrapper = styled.div`
   height: fit-content;
   width: 100%;
-  background-color: #000;
+  background-color: #ededed17;
   padding: 1em 1em;
   box-sizing: border-box;
   margin: 0 auto;

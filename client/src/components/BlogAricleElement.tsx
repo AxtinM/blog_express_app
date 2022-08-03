@@ -25,6 +25,7 @@ const BlogArticleWrapper = styled.div`
 `;
 const TextContentWrapper = styled.div`
   margin-left: 20px;
+  color: #fff;
   @media (max-width: 550px) {
     display: none;
   }
@@ -47,6 +48,7 @@ function BlogAricleElement({ data }) {
               fontFamily: "spacy",
               display: "flex",
               justifyContent: "flex-start",
+              color: "#fff",
               alignItems: "center",
             }}
           >

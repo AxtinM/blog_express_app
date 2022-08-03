@@ -54,6 +54,7 @@ const LogRegBox = styled.div`
 `;
 
 const InsideFormWrapper = styled(animated.div)`
+  color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -82,6 +83,7 @@ const LabelText = styled.p`
 const InputBox = styled.input`
   font-size: 1rem;
   width: 100%;
+  color: #eee;
   height: 20px;
   border: 2px solid #eee;
   padding: 10px;

@@ -2,6 +2,7 @@ const Articles = require("../models/articles.model");
 
 module.exports.createArticleController = async (req, res) => {
   try {
+    console.log("first");
     const { title, content } = req.body;
     const file = req.file;
     const user = req.user;
@@ -10,14 +11,14 @@ module.exports.createArticleController = async (req, res) => {
     delete file.destination;
     file.path = path.slice(path.indexOf("images")).join("/");
 
-    console.log(file);
-
     const article = new Articles({
       title,
       content,
       author: user._id,
       imageHeadline: file,
     });
+
+    console.log("article");
 
     user.articles.push(article._id);
 

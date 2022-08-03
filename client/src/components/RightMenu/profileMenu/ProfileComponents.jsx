@@ -8,6 +8,7 @@ const ProfileMenuWrapper = styled(animated.div)`
   width: 20em;
   height: 25em !important;
   border-radius: 2px;
+  color: #fff;
   background-color: rgba(4, 4, 5, 0.9);
   position: absolute;
   justify-content: center;

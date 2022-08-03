@@ -16,22 +16,24 @@ exports.isAuth = async (req, res, next) => {
       next();
     } catch (error) {
       if (error.name === "JsonWebTokenError") {
-        return res.json({
+        return res.status(401).send({
           success: false,
           message: "unauthorized access! : JsonWebTokenError",
         });
       }
       if (error.name === "TokenExpiredError") {
-        return res.json({
+        return res.status(401).send({
           success: false,
-          message: "sesson expired try sign in!",
+          message: "session expired try sign in!",
         });
       }
 
-      res.json({ success: false, message: "Internal server error!" });
+      res
+        .status(500)
+        .send({ success: false, message: "Internal server error!" });
     }
   } else {
     // console.log(req.headers.authorization);
-    res.json({ success: false, message: "unauthorized access!" });
+    res.status(403).send({ success: false, message: "unauthorized access!" });
   }
 };

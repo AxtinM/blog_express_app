@@ -15,10 +15,12 @@ const ArticleWrapper = styled.div`
   align-items: center;
   justify-content: center;
   width: 70em;
+  color: #fff;
   height: fit-content;
   padding: 2em 6em;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background-color: #ededed17;
   margin: 6em 2em;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
@@ -38,8 +40,6 @@ const HeaderDiv = styled.div`
   width: 100%;
   height: fit-content;
   padding: 0.5em 1em;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   margin: 0.5em 0;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
@@ -82,8 +82,6 @@ const ContentWrapper = styled.div`
   width: 100%;
   height: fit-content;
   padding: 0.5em 1em;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   margin: 0.5em 0;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;

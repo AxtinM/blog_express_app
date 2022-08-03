@@ -1,5 +1,9 @@
+html {
+  background-color: #1a1a1a;
+}
+
 .App {
-  min-height: 170em;
+  min-height: 100vh;
   width: 100%;
   font-family: "spacy";
   box-sizing: border-box;
@@ -8,8 +12,6 @@
   position: relative;
   height: fit-content;
   display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .editor {
@@ -18,15 +20,15 @@
   display: block;
   min-height: 90%;
   width: 80%;
-  margin: 10em auto;
+  margin: 5em auto;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  border: 3px solid #cdcdcd;
-  border-radius: 15px;
-  padding: 1em;
+  /* border: 3px solid #cdcdcd;
+  border-radius: 5px; */
+  padding: 5em 1em;
   height: fit-content;
 }
 /* Override default */
@@ -87,7 +89,6 @@
   width: 100%;
   padding: 0;
   margin: 0;
-  overflow: hidden;
   border: none;
   box-sizing: border-box;
 }
@@ -96,7 +97,9 @@
   background: transparent !important;
   border: none !important;
   font-size: 1rem !important;
-  border: 2px solid springgreen;
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: 0 !important;
 } /* Override default */
 
 .Draftail-Editor {
@@ -105,13 +108,24 @@
   height: fit-content !important;
   width: 85% !important;
   /* width: 70em !important; */
-  margin: 2rem auto !important;
+  /* margin: 2rem auto !important; */
   padding: 2em 2em !important;
   border-radius: 0px !important;
-  background-color: #0000006c !important;
+  background-color: #232323 !important;
   font-size: 1rem !important;
   box-sizing: border-box !important;
+  border: 3px solid #cdcdcd83 !important;
+  border-radius: 5px !important;
 } /* Override default */
+
+.Draftail-ToolbarGroup {
+  color: #00adb5 !important;
+  background-color: #ededed10 !important;
+}
+
+.DraftEditor-editorContainer {
+  color: #fff !important;
+}
 
 .public-DraftEditor-content {
   font-family: "spacy", Georgia, "Times New Roman", Times, serif !important;

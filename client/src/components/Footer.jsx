@@ -40,6 +40,7 @@ const FooterCopyWriteText = styled.p`
   font-size: calc(0.6rem + 0.5vw);
   font-weight: light;
   font-family: "spacy";
+  color: #fff;
   text-align: center;
 `;
 

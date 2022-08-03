@@ -32,6 +32,7 @@ cite {
   font-size: small;
   font-style: italic;
   text-align: left;
+  color: #fff;
 }
 
 footer {
@@ -136,6 +137,7 @@ cite > .Typewriter .Typewriter__wrapper {
   padding: 0.5em 10px;
   font-weight: 600;
   text-align: center;
+  color: #fff;
 }
 
 #site-quote::after {
@@ -152,15 +154,13 @@ cite > .Typewriter .Typewriter__wrapper {
 .link-title {
   border-bottom: 1px solid #393e46;
   padding: 20px;
+  color: #fff;
 }
 
 .about {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.about-content {
 }
 
 .content-title {
@@ -177,6 +177,7 @@ cite > .Typewriter .Typewriter__wrapper {
   margin-top: 20px;
   line-height: 30px;
   font-size: calc(10px + 0.7vw);
+  color: #fff;
 }
 
 .content-image {

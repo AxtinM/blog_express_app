@@ -23,9 +23,8 @@ const { SideToolbar } = sideToolbarPlugin;
 const plugins = [inlineToolbarPlugin, sideToolbarPlugin];
 
 const ButtonUpload = styled.button`
-  background-color: #1a1a1a;
-  border: 1px solid #ccc;
-  border-radius: 15px;
+  background-color: #0000006c;
+  border: none;
   color: #fff;
   cursor: pointer;
   font-size: 1.2em;
@@ -34,7 +33,7 @@ const ButtonUpload = styled.button`
   position: relative;
   text-align: center;
   text-decoration: none;
-  width: 30em;
+  width: 85%;
   height: 10em;
 
   &:hover {
@@ -81,6 +80,10 @@ class App extends React.Component {
     const htmlString = window.sessionStorage.getItem("content");
     return stateFromHTML(htmlString);
   }
+
+  // confirmArticle() {
+  //   this.navigate("/write/confirmation", { state: { data: {this.state.title, this.state.image}  } });
+  // }
 
   createArticle() {
     const formData = new FormData();
@@ -162,6 +165,9 @@ class App extends React.Component {
             onChange={this.changeState}
             placeholder="Tell your story..."
             plugins={plugins}
+            handlePastedText={() => {
+              console.log("text");
+            }}
           />
           <InlineToolbar />
           <SideToolbar />
@@ -204,6 +210,13 @@ class App extends React.Component {
             }}
           >
             Confirm
+          </button>
+          <button
+            onClick={() => {
+              console.log(this.state.editorState);
+            }}
+          >
+            Show
           </button>
         </div>
       </div>

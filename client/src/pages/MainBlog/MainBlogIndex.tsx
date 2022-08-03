@@ -33,7 +33,6 @@ const BlogContainer = styled.div`
   height: 100%;
   min-height: 100vh;
   background: #1a1a1a;
-  overflow: hidden;
   width: 100%;
 `;
 

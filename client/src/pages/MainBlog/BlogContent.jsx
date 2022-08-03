@@ -43,6 +43,7 @@ const SliderContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  color: #fff;
   background: rgba(255, 255, 255, 0.1);
   padding: 100px 0;
   box-size: border-box;
