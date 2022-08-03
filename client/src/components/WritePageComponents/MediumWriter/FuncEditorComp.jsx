@@ -37,10 +37,29 @@ import {
   ModalBody,
 } from "./ModalComponent";
 
+const ImageUrlToData = (url) => {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", url, true);
+    xhr.responseType = "blob";
+    xhr.onload = function (e) {
+      if (this.status == 200) {
+        resolve(this.response);
+      } else {
+        reject(this.statusText);
+      }
+    };
+    xhr.onerror = function (e) {
+      reject(this.statusText);
+    };
+    xhr.send();
+  });
+};
+
 function FuncEditorComp() {
   const inputRef = createRef();
   Modal.setAppElement("#root");
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const [file, setFile] = useState(null);
   const [isImage, setIsImage] = useState(false);
   const [image, setImage] = useState(null);
   const [isImageSpring, setIsImageSpring] = useState(false);
@@ -75,6 +94,7 @@ function FuncEditorComp() {
   const initial = JSON.parse(sessionStorage.getItem("draftail:content"));
   const initialTitle = sessionStorage.getItem("title");
   const initialImage = sessionStorage.getItem("image");
+
   const customStyles = {
     content: {
       backgroundColor: "#1a1a1aff",
@@ -94,6 +114,7 @@ function FuncEditorComp() {
     formData.append("title", title);
     formData.append("image", isImage ? image : null);
     formData.append("content", sessionStorage.getItem("draftail:content"));
+    formData.append("file", isImage ? file : null);
 
     articleClient
       .post("/create", formData, {
@@ -125,8 +146,20 @@ function FuncEditorComp() {
     }
     if (initialImage) {
       setImage(initialImage);
-      setIsImage(true);
-      setIsImageSpring(true);
+      ImageUrlToData(initialImage)
+        .then((data) => {
+          console.log("DATA\n", data);
+          setIsImage(true);
+          setIsImageSpring(true);
+          setFile(data);
+        })
+        .catch(() => {
+          Notification("warning", "🔥 Image NOT Loaded! 🔥");
+          setFile(null);
+          setImage(null);
+          setIsImage(false);
+          setIsImageSpring(false);
+        });
     }
   }, []);
 
@@ -202,6 +235,7 @@ function FuncEditorComp() {
                   setTimeout(() => {
                     setIsImage(false);
                     setImage(null);
+                    setFile(null);
                     URL.revokeObjectURL(image);
                   }, 500);
                 }}
@@ -225,6 +259,7 @@ function FuncEditorComp() {
           id="contained-button-file"
           onChange={(e) => {
             const _file = e.target.files[0];
+            setFile(_file);
             setImage(URL.createObjectURL(_file));
             setIsImage(true);
             setIsImageSpring(true);

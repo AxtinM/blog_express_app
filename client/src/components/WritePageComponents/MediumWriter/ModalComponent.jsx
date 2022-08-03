@@ -8,7 +8,7 @@ const ModalInsideWrapper = styled.div`
   background-color: #1a1a1aff;
   font-family: spacy;
   color: #fff;
-  width: 70%;
+  width: 100%;
   margin: 0 auto;
 `;
 

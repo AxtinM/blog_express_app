@@ -2,11 +2,11 @@ const Articles = require("../models/articles.model");
 
 module.exports.createArticleController = async (req, res) => {
   try {
-    console.log("first");
     const { title, content } = req.body;
     const file = req.file;
     const user = req.user;
 
+    console.log(req);
     const path = file.path.split("/");
     delete file.destination;
     file.path = path.slice(path.indexOf("images")).join("/");
