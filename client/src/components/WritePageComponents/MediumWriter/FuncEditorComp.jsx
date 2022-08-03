@@ -4,30 +4,26 @@ import {
   INLINE_STYLE,
   ENTITY_TYPE,
 } from "draftail";
-import { stateToHTML } from "draft-js-export-html";
-import { stateFromHTML } from "draft-js-import-html";
 import { Spring, animated } from "react-spring";
 import styled from "styled-components";
-import { convertFromRaw, EditorState } from "draft-js";
+import { convertFromRaw } from "draft-js";
 import { selectUser, handleError, logout } from "../../../features/useSlices";
 import { useSelector, useDispatch } from "react-redux";
 import { articleClient } from "../../../client";
-import { convertToRaw } from "draft-js";
-import { ContentState } from "draft-js";
-import { convertFromHTML, convertToHTML } from "draft-convert";
+import { convertToHTML } from "draft-convert";
 import "draft-js/dist/Draft.css";
 import "draftail/dist/draftail.css";
 import "draft-js-inline-toolbar-plugin/lib/plugin.css";
 import "draft-js-side-toolbar-plugin/lib/plugin.css";
 import "../../../styles/medium-editor.css";
-import { createRef, useEffect, useRef, useState } from "react";
+import { createRef, useEffect, useState } from "react";
 
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Notification from "../../popup/Notification";
 import Modal from "react-modal";
-import DraftailExporter from "../../../config/DraftailExporter";
-import exporterConfig from "../../../config/DraftailExporter";
+// import DraftailExporter from "../../../config/DraftailExporter";
+// import exporterConfig from "../../../config/DraftailExporter";
 import parse from "html-react-parser";
 import {
   ModalInsideWrapper,
