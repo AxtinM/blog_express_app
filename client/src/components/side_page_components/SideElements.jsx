@@ -7,7 +7,7 @@ function SideElements({ isThousand }) {
   return (
     <SideWrapper grow="1">
       <SearchBox />
-      <CategoryBox />
+      {/* <CategoryBox /> */}
     </SideWrapper>
   );
 }

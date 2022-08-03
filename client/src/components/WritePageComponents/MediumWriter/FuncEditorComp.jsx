@@ -61,7 +61,6 @@ function FuncEditorComp() {
   const [isImageSpring, setIsImageSpring] = useState(false);
   const [title, setTitle] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [rawCnt, setRawCnt] = useState(null);
 
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
@@ -93,18 +92,22 @@ function FuncEditorComp() {
   const initialImage = sessionStorage.getItem("image");
 
   const customStyles = {
+    overlay: {
+      backgroundColor: "rgba(255, 255, 255, 0.5)",
+      zIndex: "10",
+    },
     content: {
       backgroundColor: "#1a1a1a",
-      borderRadius: "5px",
+      borderRadius: "10px",
       padding: "2em",
-      width: "70%",
+      width: "90%",
       margin: "0 auto",
+      border: "none",
     },
   };
 
   const onSave = (content) => {
     sessionStorage.setItem("draftail:content", JSON.stringify(content));
-    setRawCnt(JSON.stringify(rawCnt));
   };
 
   const createArticle = () => {
@@ -170,15 +173,15 @@ function FuncEditorComp() {
             <ModalImage src={image} />
           </ModalHeader>
           <ModalBody>
-            {rawCnt == null
-              ? null
-              : parse(
+            {sessionStorage.getItem("draftail:content")
+              ? parse(
                   convertToHTML(
                     convertFromRaw(
                       JSON.parse(sessionStorage.getItem("draftail:content"))
                     )
                   )
-                )}
+                )
+              : null}
           </ModalBody>
           <div>
             <button
@@ -189,13 +192,13 @@ function FuncEditorComp() {
                 cursor: "pointer",
                 fontSize: "1.2em",
                 fontWeight: "bold",
-                padding: "1em",
+                padding: "0.7em 1em",
                 position: "relative",
                 textAlign: "center",
                 textDecoration: "none",
                 marginTop: "1em",
                 marginBottom: "1em",
-                borderRadius: "5px",
+                borderRadius: "10px",
                 outline: "none",
               }}
               onClick={() => {

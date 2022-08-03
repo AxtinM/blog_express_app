@@ -32,17 +32,15 @@ const ModalTitle = styled.h2`
 `;
 
 const ModalImage = styled.img`
-  max-width: 20em;
-  max-height: 20em;
+  max-width: 30em;
+  max-height: 30em;
   object-fit: cover;
   object-position: center;
   border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
   margin-bottom: 1em;
+  margin-top: 1em;
   cursor: pointer;
-  &:hover {
-    opacity: 0.8;
-  }
 `;
 
 const ModalBody = styled.div`
