@@ -319,6 +319,7 @@ function FuncEditorComp() {
             sessionStorage.removeItem("image");
             setIsImage(false);
             setIsImageSpring(false);
+            setFile(null);
             sessionStorage.removeItem("draftail:content");
           }}
         >
@@ -334,8 +335,6 @@ function FuncEditorComp() {
         <button
           onClick={() => {
             setIsModalOpen(true);
-            // console.log("STATE2");
-            // console.log(JSON.parse(sessionStorage.getItem("state")));
           }}
         >
           Show

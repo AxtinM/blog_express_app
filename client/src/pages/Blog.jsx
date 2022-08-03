@@ -91,7 +91,7 @@ function Blog() {
             <></>
           )}
 
-          {num !== 1 ? (
+          {num !== "1" ? (
             <>
               <Link
                 to={`/blog/${parseInt(num) - 1}`}

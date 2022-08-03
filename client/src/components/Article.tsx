@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import parse from "html-react-parser";
 import "../styles/article.css";
+import { convertToHTML } from "draft-convert";
+import { convertFromRaw } from "draft-js";
 import { NavLink } from "react-router-dom";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -118,7 +120,12 @@ function Article(props: {
           </ArticleUnderHeaderP>
         </ArticleUnderHeaderDiv>
         <ArticleMainContentDiv>
-          {parse(props.data.content)}
+          {props.data.content.length > 0
+            ? // Uncaught SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+              parse(
+                convertToHTML(convertFromRaw(JSON.parse(props.data.content)))
+              )
+            : null}
         </ArticleMainContentDiv>
         <span
           style={{
