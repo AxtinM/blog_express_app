@@ -61,6 +61,7 @@ function FuncEditorComp() {
   const [isImageSpring, setIsImageSpring] = useState(false);
   const [title, setTitle] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [rawCnt, setRawCnt] = useState(null);
 
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
@@ -93,7 +94,7 @@ function FuncEditorComp() {
 
   const customStyles = {
     content: {
-      backgroundColor: "#1a1a1aff",
+      backgroundColor: "#1a1a1a",
       borderRadius: "5px",
       padding: "2em",
       width: "70%",
@@ -103,6 +104,7 @@ function FuncEditorComp() {
 
   const onSave = (content) => {
     sessionStorage.setItem("draftail:content", JSON.stringify(content));
+    setRawCnt(JSON.stringify(rawCnt));
   };
 
   const createArticle = () => {
@@ -160,25 +162,23 @@ function FuncEditorComp() {
   }, []);
 
   return (
-    <div className="editor">
+    <>
       <Modal isOpen={isModalOpen} style={customStyles}>
         <ModalInsideWrapper>
           <ModalHeader>
             <ModalTitle>{title}</ModalTitle>
-            <ModalImage src={image} alt="article" />
+            <ModalImage src={image} />
           </ModalHeader>
           <ModalBody>
-            {sessionStorage.getItem("draftail:content") !== "null" ||
-            null ||
-            undefined
-              ? parse(
+            {rawCnt == null
+              ? null
+              : parse(
                   convertToHTML(
                     convertFromRaw(
                       JSON.parse(sessionStorage.getItem("draftail:content"))
                     )
                   )
-                )
-              : ""}
+                )}
           </ModalBody>
           <div>
             <button
@@ -209,138 +209,139 @@ function FuncEditorComp() {
           </div>
         </ModalInsideWrapper>
       </Modal>
+      <div className="editor">
+        <div className="title-input">
+          <input
+            type="text"
+            placeholder="Title"
+            value={title}
+            onChange={(e) => {
+              setTitle(e.target.value);
+              sessionStorage.setItem("title", e.target.value);
+            }}
+          />
+          {isImage === true ? (
+            <Spring scale={isImageSpring ? 1 : 0}>
+              {(styles) => (
+                <animated.img
+                  style={styles}
+                  src={image}
+                  onClick={() => {
+                    setIsImageSpring(!isImageSpring);
+                    setTimeout(() => {
+                      setIsImage(false);
+                      setImage(null);
+                      setFile(null);
+                      URL.revokeObjectURL(image);
+                    }, 500);
+                  }}
+                />
+              )}
+            </Spring>
+          ) : (
+            <ButtonUpload
+              onClick={() => {
+                inputRef.current.click();
+              }}
+            >
+              Upload Image
+            </ButtonUpload>
+          )}
+          <input
+            ref={inputRef}
+            type="file"
+            accept="image/*"
+            style={{ display: "none" }}
+            id="contained-button-file"
+            onChange={(e) => {
+              const _file = e.target.files[0];
+              setFile(_file);
+              setImage(URL.createObjectURL(_file));
+              setIsImage(true);
+              setIsImageSpring(true);
+              sessionStorage.setItem("image", URL.createObjectURL(_file));
+            }}
+          />
+        </div>
 
-      <div className="title-input">
-        <input
-          type="text"
-          placeholder="Title"
-          value={title}
-          onChange={(e) => {
-            setTitle(e.target.value);
-            sessionStorage.setItem("title", e.target.value);
-          }}
+        <div className="editor-container">
+          <DraftailEditor
+            rawContentState={initial || null}
+            onSave={onSave}
+            blockTypes={[
+              { type: BLOCK_TYPE.HEADER_TWO },
+              { type: BLOCK_TYPE.HEADER_THREE },
+              { type: BLOCK_TYPE.HEADER_FOUR },
+              { type: BLOCK_TYPE.UNORDERED_LIST_ITEM },
+              { type: BLOCK_TYPE.ORDERED_LIST_ITEM },
+              { type: BLOCK_TYPE.CODE },
+            ]}
+            inlineStyles={[
+              { type: INLINE_STYLE.BOLD },
+              { type: INLINE_STYLE.ITALIC },
+              { type: INLINE_STYLE.UNDERLINE },
+              { type: INLINE_STYLE.KEYBOARD },
+              { type: INLINE_STYLE.DELETE },
+              { type: INLINE_STYLE.CODE },
+            ]}
+            entityTypes={[
+              {
+                // We use the same value for type as in the converter.
+                type: ENTITY_TYPE.LINK,
+
+                // We define what data the LINKs can have.
+                attributes: ["url"],
+                whitelist: {
+                  href: "^(?![#/])",
+                },
+              },
+            ]}
+          />
+        </div>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
         />
-        {isImage === true ? (
-          <Spring scale={isImageSpring ? 1 : 0}>
-            {(styles) => (
-              <animated.img
-                style={styles}
-                src={image}
-                onClick={() => {
-                  setIsImageSpring(!isImageSpring);
-                  setTimeout(() => {
-                    setIsImage(false);
-                    setImage(null);
-                    setFile(null);
-                    URL.revokeObjectURL(image);
-                  }, 500);
-                }}
-              />
-            )}
-          </Spring>
-        ) : (
-          <ButtonUpload
+        <div className="buttons">
+          <button
             onClick={() => {
-              inputRef.current.click();
+              setTitle("");
+              sessionStorage.removeItem("title");
+              setImage(null);
+              sessionStorage.removeItem("image");
+              setIsImage(false);
+              setIsImageSpring(false);
+              setFile(null);
+              sessionStorage.removeItem("draftail:content");
+              Notification("success", "🎉 Successfull Reset! 🎉");
             }}
           >
-            Upload Image
-          </ButtonUpload>
-        )}
-        <input
-          ref={inputRef}
-          type="file"
-          accept="image/*"
-          style={{ display: "none" }}
-          id="contained-button-file"
-          onChange={(e) => {
-            const _file = e.target.files[0];
-            setFile(_file);
-            setImage(URL.createObjectURL(_file));
-            setIsImage(true);
-            setIsImageSpring(true);
-            sessionStorage.setItem("image", URL.createObjectURL(_file));
-          }}
-        />
+            reset
+          </button>
+          <button
+            onClick={() => {
+              createArticle();
+            }}
+          >
+            Confirm
+          </button>
+          <button
+            onClick={() => {
+              setIsModalOpen(true);
+            }}
+          >
+            Show
+          </button>
+        </div>
       </div>
-
-      <div className="editor-container">
-        <DraftailEditor
-          rawContentState={initial || null}
-          onSave={onSave}
-          blockTypes={[
-            { type: BLOCK_TYPE.HEADER_TWO },
-            { type: BLOCK_TYPE.HEADER_THREE },
-            { type: BLOCK_TYPE.HEADER_FOUR },
-            { type: BLOCK_TYPE.UNORDERED_LIST_ITEM },
-            { type: BLOCK_TYPE.ORDERED_LIST_ITEM },
-            { type: BLOCK_TYPE.CODE },
-            { type: BLOCK_TYPE.BLOCKQUOTE },
-          ]}
-          inlineStyles={[
-            { type: INLINE_STYLE.BOLD },
-            { type: INLINE_STYLE.ITALIC },
-            { type: INLINE_STYLE.UNDERLINE },
-            { type: INLINE_STYLE.KEYBOARD },
-            { type: INLINE_STYLE.DELETE },
-            { type: INLINE_STYLE.CODE },
-          ]}
-          entityTypes={[
-            {
-              // We use the same value for type as in the converter.
-              type: ENTITY_TYPE.LINK,
-
-              // We define what data the LINKs can have.
-              attributes: ["url"],
-              whitelist: {
-                href: "^(?![#/])",
-              },
-            },
-          ]}
-        />
-      </div>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
-      <div className="buttons">
-        <button
-          onClick={() => {
-            setTitle("");
-            sessionStorage.removeItem("title");
-            setImage(null);
-            sessionStorage.removeItem("image");
-            setIsImage(false);
-            setIsImageSpring(false);
-            setFile(null);
-            sessionStorage.removeItem("draftail:content");
-          }}
-        >
-          reset
-        </button>
-        <button
-          onClick={() => {
-            createArticle();
-          }}
-        >
-          Confirm
-        </button>
-        <button
-          onClick={() => {
-            setIsModalOpen(true);
-          }}
-        >
-          Show
-        </button>
-      </div>
-    </div>
+    </>
   );
 }
 

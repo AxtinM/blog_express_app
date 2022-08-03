@@ -5,11 +5,12 @@ const ModalInsideWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #1a1a1aff;
+  background-color: #1a1a1a;
   font-family: spacy;
   color: #fff;
   width: 100%;
   margin: 0 auto;
+  z-index: 100;
 `;
 
 const ModalHeader = styled.div`
@@ -18,12 +19,12 @@ const ModalHeader = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 30em;
+  height: 20em;
   margin: 5em 0;
 `;
 
 const ModalTitle = styled.h2`
-  font-size: 1.5em;
+  font-size: 2em;
   font-weight: bold;
   color: #fff;
   text-align: center;
@@ -45,8 +46,8 @@ const ModalImage = styled.img`
 `;
 
 const ModalBody = styled.div`
-  font-size: 1em;
-  line-height: 1.5em;
+  font-size: 0.8em;
+  line-height: 1.2em;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
