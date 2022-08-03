@@ -1,5 +1,4 @@
-import React from "react";
-import CategoryBox from "./CategoryBox";
+// import CategoryBox from "./CategoryBox";
 import SearchBox from "./SearchBox";
 import { SideWrapper } from "../../pages/MainBlog/BlogContent";
 

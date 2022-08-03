@@ -39,7 +39,7 @@ const ImageUrlToData = (url) => {
     xhr.open("GET", url, true);
     xhr.responseType = "blob";
     xhr.onload = function (e) {
-      if (this.status == 200) {
+      if (this.status === 200) {
         resolve(this.response);
       } else {
         reject(this.statusText);
@@ -162,6 +162,7 @@ function FuncEditorComp() {
           setIsImageSpring(false);
         });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

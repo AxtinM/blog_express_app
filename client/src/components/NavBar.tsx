@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import styled from "styled-components";
 import { useSpring, animated } from "react-spring";
 import { useState } from "react";

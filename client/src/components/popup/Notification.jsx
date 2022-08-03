@@ -1,4 +1,5 @@
 import { toast } from "react-toastify";
+// eslint-disable-next-line no-global-assign
 export default Notification = (type, text) => {
   switch (type) {
     case "success":
@@ -32,6 +33,16 @@ export default Notification = (type, text) => {
         progress: undefined,
       });
     case "info":
+      return toast.info(text, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    default:
       return toast.info(text, {
         position: "top-right",
         autoClose: 5000,

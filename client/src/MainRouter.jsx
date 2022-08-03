@@ -12,7 +12,7 @@ import BlogContent from "./pages/MainBlog/BlogContent";
 import Blog from "./pages/Blog";
 import WriteArticle from "./pages/WritePage/WriteArticle";
 import ArticlePage from "./pages/MainBlog/ArticlePage";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectUser } from "./features/useSlices";
 
 function WriteConfimation({ user, children }) {

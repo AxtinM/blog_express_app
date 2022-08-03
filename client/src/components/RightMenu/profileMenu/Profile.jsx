@@ -97,6 +97,7 @@ function Profile() {
     if (user.user.image) {
       setImageUrl(user.user.image.path);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
