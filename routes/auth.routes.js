@@ -11,6 +11,8 @@ const {
   updateImageProfile,
 } = require("../controllers/auth.controller");
 
+const { sendEmail } = require("../controllers/email.controller");
+
 storage = multer.diskStorage({
   destination: function (req, file, cb) {
     const image_dir = "../public/images/profile";
@@ -34,7 +36,7 @@ storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.post("/register", signUpController);
+router.post("/register", signUpController, sendEmail);
 router.post("/login", signInController);
 router.post("/logout", isAuth, logoutController);
 router.post("/update_image", isAuth, upload.single("file"), updateImageProfile);

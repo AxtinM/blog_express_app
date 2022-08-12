@@ -174,7 +174,7 @@ function FuncEditorComp() {
             <ModalImage src={image} />
           </ModalHeader>
           <ModalBody>
-            {sessionStorage.getItem("draftail:content")
+            {sessionStorage.getItem("draftail:content") !== "null"
               ? parse(
                   convertToHTML(
                     convertFromRaw(
@@ -287,18 +287,6 @@ function FuncEditorComp() {
               { type: INLINE_STYLE.KEYBOARD },
               { type: INLINE_STYLE.DELETE },
               { type: INLINE_STYLE.CODE },
-            ]}
-            entityTypes={[
-              {
-                // We use the same value for type as in the converter.
-                type: ENTITY_TYPE.LINK,
-
-                // We define what data the LINKs can have.
-                attributes: ["url"],
-                whitelist: {
-                  href: "^(?![#/])",
-                },
-              },
             ]}
           />
         </div>
