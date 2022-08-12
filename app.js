@@ -22,14 +22,14 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("port", process.env.PORT || 8000);
 app.use("/api", indexRoutes);
 
-// if (process.env.NODE_ENV == "production") {
-//   app.use(express.static(path.join(__dirname, "client", "build")));
-// }
+if (process.env.NODE_ENV == "production") {
+   app.use(express.static(path.join(__dirname, "client", "build")));
+}
 
-// app.use("/*", (req, res) => {
-//   console.log("----------------------------------------------------");
-//   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-// });
+app.get("/*", (req, res) => {
+   console.log("----------------------------------------------------");
+   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 app.listen(app.get("port"), () => {
   console.log(`Server is running on port ${app.get("port")}`);

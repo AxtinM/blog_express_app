@@ -1,7 +1,7 @@
 {
   "name": "blog_site",
   "version": "0.1.0",
-  "homepage": ".",
+  "homepage": "https://moattig.xyz",
   "dependencies": {
     "@draft-js-plugins/editor": "^4.1.3",
     "@draft-js-plugins/inline-toolbar": "^4.1.6",
