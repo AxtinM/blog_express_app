@@ -102,6 +102,7 @@ const TextInput = styled.input`
   border: 0;
   font-size: 14px;
   font-family: spacy;
+  color: #fff;
 `;
 
 const TextLabel = styled.p`

@@ -12,7 +12,6 @@ export const userSlice = createSlice({
       action: { payload: { [x: string]: any; isLoggedIn: boolean } }
     ) => {
       let { isLoggedIn, ...data } = action.payload;
-      console.log("data : ", data);
       state.user = data;
       state.isLoggedIn = isLoggedIn;
     },

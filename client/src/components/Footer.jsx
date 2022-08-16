@@ -48,7 +48,7 @@ function Footer() {
   return (
     <FooterWrapper>
       <FooterDivisionWrapper>
-        <FooterAndromeda>(Ax)Blog</FooterAndromeda>
+        <FooterAndromeda>PunkLog</FooterAndromeda>
         <FooterLinksDiv>
           <NavLink to="/blog/1" className="footer-element">
             Blog
@@ -63,7 +63,7 @@ function Footer() {
         <EmptyDiv />
       </FooterDivisionWrapper>
       <FooterCopyWriteText>
-        Copyright © 2022 | Mohamed Attig | Axton (Ax) .
+        Copyright © 2022 | Mohamed Attig == (Ax) .
       </FooterCopyWriteText>
     </FooterWrapper>
   );

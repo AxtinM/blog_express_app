@@ -68,7 +68,6 @@ function Profile() {
         }
       );
       const data = await res.data;
-      console.log(data);
       dispatch(logout());
       await clearStorage();
     } catch (err) {
@@ -92,9 +91,7 @@ function Profile() {
           Authorization: `Bearer ${user.user.token}`,
         },
       });
-      console.log("Response --------- \n ", res);
       const data = await res.data;
-      console.log(data);
       return data;
     } catch (err) {
       if (err.response.status === 401) {

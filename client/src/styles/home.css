@@ -5,6 +5,10 @@ main {
   /* font-family: "Ubuntu Mono", monospace; */
 }
 
+span {
+  color: #fff;
+}
+
 p {
   font-size: 24px;
 }
