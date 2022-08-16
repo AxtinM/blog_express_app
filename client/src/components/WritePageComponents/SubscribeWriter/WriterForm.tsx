@@ -48,6 +48,7 @@ function WriterForm({ onChange, text, setText, onSubmit }) {
             fontFamily: "spacy",
             marginBottom: "1em",
             fontSize: "1.6rem",
+            color: "#fff",
           }}
         >
           Media Url

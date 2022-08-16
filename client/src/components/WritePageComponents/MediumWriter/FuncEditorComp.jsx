@@ -1,9 +1,4 @@
-import {
-  DraftailEditor,
-  BLOCK_TYPE,
-  INLINE_STYLE,
-  ENTITY_TYPE,
-} from "draftail";
+import { DraftailEditor, BLOCK_TYPE, INLINE_STYLE } from "draftail";
 import { Spring, animated } from "react-spring";
 import styled from "styled-components";
 import { convertFromRaw } from "draft-js";
@@ -135,7 +130,6 @@ function FuncEditorComp() {
           dispatch(logout());
         } else {
           Notification("error", "😕 Server Error! 😕");
-          console.log(err.response.data.message);
           dispatch(handleError(err.response.data.message));
         }
       });
@@ -149,7 +143,6 @@ function FuncEditorComp() {
       setImage(initialImage);
       ImageUrlToData(initialImage)
         .then((data) => {
-          console.log("DATA\n", data);
           setIsImage(true);
           setIsImageSpring(true);
           setFile(data);
@@ -174,7 +167,10 @@ function FuncEditorComp() {
             <ModalImage src={image} />
           </ModalHeader>
           <ModalBody>
-            {sessionStorage.getItem("draftail:content")
+            {/* eslint-disable-next-line eqeqeq */}
+            {sessionStorage.getItem("draftail:content") !== null &&
+            sessionStorage.getItem("draftail:content") !== "null" &&
+            sessionStorage.getItem("draftail:content") !== undefined
               ? parse(
                   convertToHTML(
                     convertFromRaw(
@@ -287,18 +283,6 @@ function FuncEditorComp() {
               { type: INLINE_STYLE.KEYBOARD },
               { type: INLINE_STYLE.DELETE },
               { type: INLINE_STYLE.CODE },
-            ]}
-            entityTypes={[
-              {
-                // We use the same value for type as in the converter.
-                type: ENTITY_TYPE.LINK,
-
-                // We define what data the LINKs can have.
-                attributes: ["url"],
-                whitelist: {
-                  href: "^(?![#/])",
-                },
-              },
             ]}
           />
         </div>

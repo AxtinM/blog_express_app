@@ -54,9 +54,6 @@ export default function Home() {
   };
   useEffect(() => {
     getQuotes();
-    if (quote !== undefined) {
-      console.log(quote.text);
-    }
     // const data = await quoteClient.get("quotes");
     setTimeout(() => {
       setTime(getTime(new Date()));
@@ -129,19 +126,17 @@ export default function Home() {
                   <h1 className="content-title">About</h1>
                   <p className="content-text">
                     <h4 className="first-letter">T</h4>his blog site is written
-                    by me, Mohamed Attig | Ax, I am based in Sousse, Tunisia. I
-                    previously worked at Sastec-Group, Currently i continue to
-                    work as a freelancer, and an undergraduate student at Higher
-                    Institute of Computer Science and Communication
-                    Techniques.I've worked on a variety of projects ranging from
-                    embedded systems development to mobile development to web
-                    development. I've worked on various intriguing electronic
-                    gadgets that have given me a better grasp of how electronics
-                    operate and how to connect with them safely. I can
-                    confidently claim to know a droplet in an ocean of
-                    knowledge, but I'm also aware of and fascinated by the
-                    notion that our minds are like sponges, continually soaking
-                    up an unending supply of information.
+                    by me, Mohamed Attig | Ax, based in Sousse, Tunisia. I am a
+                    devoted and ambitious individual who likes learning and
+                    growing. I have life goals that I want to attain, such as
+                    pushing technology to its best extent in my life as well as
+                    assisting humanity in ensuring consistency, rather than
+                    spinning out and missing out on new advancements. I'm
+                    interested in a variety of amazing technologies, from
+                    augmented reality to blockchain to robotics, and I strive
+                    effectively every day to enhance my abilities so that one
+                    day I could be the one who, with the assistance of other
+                    individuals, guides our humankind.
                   </p>
                 </div>
                 <div className="image-content">

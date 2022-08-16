@@ -46,6 +46,14 @@ const userSchema = new Schema({
   image: {
     type: Object,
   },
+  hash: {
+    type: String,
+    default: undefined,
+  },
+  isVerified: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 userSchema.pre("save", function (next) {

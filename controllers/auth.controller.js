@@ -9,7 +9,7 @@ const userInformation = async (id) => {
   return user;
 };
 
-module.exports.signUpController = async (req, res) => {
+module.exports.signUpController = async (req, res, next) => {
   try {
     const { name, username, email, password } = req.body;
     console.log(req.body);
@@ -22,8 +22,9 @@ module.exports.signUpController = async (req, res) => {
         password,
       });
 
-      user.save();
-      return res.status(201).send({
+      req.user = user;
+      // return next();
+      return res.status(200).send({
         message: "User created successfully",
       });
     } else {
@@ -94,6 +95,9 @@ module.exports.signInController = async (req, res) => {
 
 module.exports.logoutController = async (req, res) => {
   try {
+    console.log("req.user\n", req.user);
+    console.log("req.token\n", req.token);
+
     if (!req.user || !req.token) {
       return res.status(401).send({
         message: "Something went wrong with token auth",

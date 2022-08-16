@@ -77,7 +77,7 @@ function Blog() {
             <ArticlePaginationBtn
               onClick={async () => {
                 forwardRef.current.click();
-                console.log(parseInt(num) + 1);
+                // console.log(parseInt(num) + 1);
                 getArticle(parseInt(num) + 1)
                   .then((res) => {
                     setData(res.articles);
@@ -101,7 +101,7 @@ function Blog() {
               <ArticlePaginationBtnRight
                 onClick={() => {
                   prevRef.current.click();
-                  console.log(parseInt(num) - 1);
+                  // console.log(parseInt(num) - 1);
                   getArticle(parseInt(num) - 1)
                     .then((res) => {
                       setData(res.articles);

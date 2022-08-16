@@ -14,6 +14,8 @@ import { selectUser } from "../../../features/useSlices";
 import { logout } from "../../../features/useSlices";
 import { authClient } from "../../../client";
 import { clearStorage } from "../../../app/store";
+import { ToastContainer } from "react-toastify";
+import Notification from "../../popup/Notification";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -66,11 +68,16 @@ function Profile() {
         }
       );
       const data = await res.data;
-      console.log(data);
       dispatch(logout());
       await clearStorage();
     } catch (err) {
-      console.log("error logging out !");
+      if (err.response.status === 401) {
+        dispatch(logout());
+        await clearStorage();
+        Notification("error", "You are not authorized to do this");
+      } else {
+        console.log("error logging out !");
+      }
     }
   };
   const handleUpdate = async () => {
@@ -84,12 +91,16 @@ function Profile() {
           Authorization: `Bearer ${user.user.token}`,
         },
       });
-      console.log("Response --------- \n ", res);
       const data = await res.data;
-      console.log(data);
       return data;
     } catch (err) {
-      console.log("err : ", err);
+      if (err.response.status === 401) {
+        dispatch(logout());
+        await clearStorage();
+        Notification("error", "You are not authorized to do this");
+      } else {
+        console.log("err : ", err);
+      }
     }
   };
 
@@ -116,6 +127,17 @@ function Profile() {
 
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <ProfileMenuWrapper style={ProfileMenuSpring}>
         <InsideMenuWrapper>
           <Name>{user.user.username}</Name>
@@ -138,6 +160,7 @@ function Profile() {
             style={{ bottom: "4em" }}
             onClick={() => {
               inputRef.current.click();
+              Notification("success", "Image updated");
             }}
           >
             Upload

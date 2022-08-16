@@ -14,6 +14,9 @@ import { useSpring } from "react-spring";
 import { useDispatch } from "react-redux";
 import { handleError, login } from "../../../features/useSlices";
 
+import { ToastContainer } from "react-toastify";
+import Notification from "../../popup/Notification";
+
 import "../../../styles/write.css";
 
 const handleLogin = async (email, password) => {
@@ -74,9 +77,10 @@ const InsideLogin = ({ style }) => {
           try {
             const res = await handleLogin(email, password);
             dispatch(login({ user: res.user, isLoggedIn: true }));
+            Notification("success", "Login Successful");
           } catch (err) {
             dispatch(handleError(err.response.data.message));
-            console.log(`------${err.response.status}------`);
+            Notification("error", err.response.data.message);
           }
         }}
       >
@@ -91,6 +95,8 @@ const InsideRegister = ({ style }) => {
   const [alias, setAlias] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const dispatch = useDispatch();
 
   return (
     <InsideFormWrapper style={style}>
@@ -150,10 +156,17 @@ const InsideRegister = ({ style }) => {
       <SubmitButton
         type="submit"
         onClick={() => {
-          handleRegister(email, password, alias, name);
+          handleRegister(email, password, alias, name)
+            .then((res) => {
+              Notification("success", "Registration Successful");
+            })
+            .catch((err) => {
+              dispatch(handleError(err.response.data.message));
+              Notification("error", err.response.data.message);
+            });
         }}
       >
-        SignIn
+        SignUp
       </SubmitButton>
     </InsideFormWrapper>
   );
@@ -174,43 +187,56 @@ function LogRegComponent() {
   });
 
   return (
-    <div id="write-login">
-      <HeaderText>Please concider Logging in First !</HeaderText>
-      <SwitchButtonWrapper>
-        <SwitchButton
-          type="button"
-          value="Login"
-          style={{
-            backgroundColor: "#50FF81",
-            filter: loginBtn ? "none" : "grayscale(100%)",
-            boxShadow: !loginBtn ? "none" : "inset 0px 0px 4px #000",
-          }}
-          onClick={() => {
-            setLoginBtn(true);
-          }}
-        >
-          LogIn
-        </SwitchButton>
-        <SwitchButton
-          type="button"
-          value="Register"
-          style={{
-            backgroundColor: "#50FF81",
-            filter: !loginBtn ? "none" : "grayscale(100%)",
-            boxShadow: loginBtn ? "none" : "inset 0px 0px 4px #000",
-          }}
-          onClick={() => {
-            setLoginBtn(false);
-          }}
-        >
-          SignIn
-        </SwitchButton>
-      </SwitchButtonWrapper>
-      <LogRegBox>
-        <InsideLogin style={LoginSpring} />
-        <InsideRegister style={RegisterSpring} />
-      </LogRegBox>
-    </div>
+    <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+      <div id="write-login">
+        <HeaderText>Please concider Logging in First !</HeaderText>
+        <SwitchButtonWrapper>
+          <SwitchButton
+            type="button"
+            value="Login"
+            style={{
+              backgroundColor: "#50FF81",
+              filter: loginBtn ? "none" : "grayscale(100%)",
+              boxShadow: !loginBtn ? "none" : "inset 0px 0px 4px #000",
+            }}
+            onClick={() => {
+              setLoginBtn(true);
+            }}
+          >
+            LogIn
+          </SwitchButton>
+          <SwitchButton
+            type="button"
+            value="Register"
+            style={{
+              backgroundColor: "#50FF81",
+              filter: !loginBtn ? "none" : "grayscale(100%)",
+              boxShadow: loginBtn ? "none" : "inset 0px 0px 4px #000",
+            }}
+            onClick={() => {
+              setLoginBtn(false);
+            }}
+          >
+            SignUp
+          </SwitchButton>
+        </SwitchButtonWrapper>
+        <LogRegBox>
+          <InsideLogin style={LoginSpring} />
+          <InsideRegister style={RegisterSpring} />
+        </LogRegBox>
+      </div>
+    </>
   );
 }
 
