@@ -60,14 +60,15 @@ function Profile() {
   const dispatch = useDispatch();
   const handleLogout = async () => {
     try {
-      const res = await authClient.post(
+      // eslint-disable-next-line
+	const res = await authClient.post(
         "/logout",
         {},
         {
           headers: { Authorization: `Bearer ${user.user.token}` },
         }
       );
-      const data = await res.data;
+      // const data = await res.data;
       dispatch(logout());
       await clearStorage();
     } catch (err) {
