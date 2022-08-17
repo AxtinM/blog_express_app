@@ -132,13 +132,7 @@ const ArticlePage = () => {
           />
         ) : null}
       </HeaderDiv>
-      {/* {props.data.content.length > 0
-            ? // Uncaught SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
-              parse(
-                convertToHTML(convertFromRaw(JSON.parse(props.data.content)))
-              )
-            : null} */}
-      <ContentWrapper>
+      <ContentWrapper className="wrapper">
         {article.content != null
           ? parse(convertToHTML(convertFromRaw(JSON.parse(article.content))))
           : null}

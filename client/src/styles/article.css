@@ -21,12 +21,43 @@ code {
   background-color: #9898986b;
 }
 
-ul {
-  font-size: calc(0.4vw + 0.6em);
-  margin: 0 1.5em;
+em {
+  font-size: calc(0.4vw + 0.5em);
 }
 
-ol {
+.wrapper > ul {
   font-size: calc(0.4vw + 0.6em);
-  margin: 0 1.5em;
+  margin: 0.5em 1.5em;
+}
+
+.wrapper > ul > li {
+  margin: 1em 0;
+}
+
+.wrapper > ol {
+  font-size: calc(0.4vw + 0.6em);
+  margin: 0.5em 2em;
+}
+.wrapper > ol > li {
+  margin: 1em 0;
+}
+
+.wrapper > h4 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.wrapper > h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.wrapper > h2 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.wrapper > p {
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
 }
