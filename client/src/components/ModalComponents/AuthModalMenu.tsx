@@ -45,13 +45,62 @@ function AuthModalMenu({
   const [username, setUsername] = useState("");
   const [name, setName] = useState("");
 
-  const handleLogin = async (email, password) => {
+  const handleEmailValidation = (email: string): boolean => {
+    const emailRegex =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (email === "") {
+      return false;
+    } else if (emailRegex.test(email)) {
+      return true;
+    } else {
+      Notification("info", "Email is not valid");
+      return false;
+    }
+  };
+
+  const handleStrongPasswordValidation = (password: string): boolean => {
+    const passwordRegex = /[0-9a-zA-Z]{6,}/;
+    if (password === "") {
+      return false;
+    } else if (passwordRegex.test(password)) {
+      return true;
+    } else {
+      Notification("info", "Password must be at least 6 characters long");
+      return false;
+    }
+  };
+
+  const handleFormValidation = (
+    email: string,
+    password: string,
+    username: string,
+    name: string
+  ): boolean => {
+    if (
+      handleEmailValidation(email) &&
+      handleStrongPasswordValidation(password) &&
+      username !== "" &&
+      name !== ""
+    ) {
+      return true;
+    } else {
+      Notification("info", "Please fill out all fields");
+      return false;
+    }
+  };
+
+  const handleLogin = async (email: string, password: string): Promise<any> => {
     const res = await authClient.post("/login", { email, password });
     const data = await res.data;
     return data;
   };
 
-  const handleRegister = async (email, password, username, name) => {
+  const handleRegister = async (
+    email: string,
+    password: string,
+    username: string,
+    name: string
+  ): Promise<any> => {
     const res = await authClient.post("/register", {
       email: email,
       password: password,
@@ -138,15 +187,16 @@ function AuthModalMenu({
             <div className="button-modal-wrapper">
               <ModalBtn
                 style={{ color: "#FF2E63" }}
-                onClick={async () => {
-                  try {
-                    const res = await handleLogin(email, password);
-                    dispatch(login({ user: res.user, isLoggedIn: true }));
-                    Notification("success", "Login Successful");
-                  } catch (err) {
-                    dispatch(handleError(err.response.data.message));
-                    Notification("error", err.response.data.message);
-                  }
+                onClick={() => {
+                  handleLogin(email, password)
+                    .then((data) => {
+                      dispatch(login({ user: data.user, isLoggedIn: true }));
+                      Notification("success", "Login Successful");
+                    })
+                    .catch((err) => {
+                      // dispatch(handleError(err.response.data.message));
+                      Notification("error", err.response.data.message);
+                    });
                 }}
               >
                 Login
@@ -220,19 +270,21 @@ function AuthModalMenu({
             <div className="button-modal-wrapper">
               <ModalBtn
                 style={{ color: "#FF2E63" }}
-                onClick={async () => {
-                  try {
-                    await handleRegister(email, password, username, name);
-                    setRegisterBtn(!registerBtn);
-                    setLoginBtn(!loginBtn);
-                    setEmail("");
-                    setPassword("");
-                    setUsername("");
-                    setName("");
-                    Notification("success", "Account Created Successfully");
-                  } catch (err) {
-                    dispatch(handleError(err.response.data.message));
-                    Notification("error", err.response.data.message);
+                onClick={() => {
+                  if (handleFormValidation(email, password, username, name)) {
+                    handleRegister(email, password, username, name)
+                      .then((data) => {
+                        Notification("success", "Account Created Successfully");
+                        setRegisterBtn(!registerBtn);
+                        setLoginBtn(!loginBtn);
+                        setEmail("");
+                        setPassword("");
+                        setUsername("");
+                        setName("");
+                      })
+                      .catch((err) => {
+                        Notification("error", err.response.data.message);
+                      });
                   }
                 }}
               >

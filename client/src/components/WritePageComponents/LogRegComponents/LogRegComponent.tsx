@@ -79,7 +79,7 @@ const InsideLogin = ({ style }) => {
             dispatch(login({ user: res.user, isLoggedIn: true }));
             Notification("success", "Login Successful");
           } catch (err) {
-            dispatch(handleError(err.response.data.message));
+            // dispatch(handleError(err.response.data.message));
             Notification("error", err.response.data.message);
           }
         }}

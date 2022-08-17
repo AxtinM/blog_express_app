@@ -12,7 +12,7 @@ const userInformation = async (id) => {
 module.exports.signUpController = async (req, res, next) => {
   try {
     const { name, username, email, password } = req.body;
-    console.log(req.body);
+    // console.log(req.body);
     const isNewUser = User.isThisEmailInUse(email);
     if (isNewUser) {
       const user = await User({
@@ -24,6 +24,7 @@ module.exports.signUpController = async (req, res, next) => {
 
       req.user = user;
       // return next();
+      user.save();
       return res.status(200).send({
         message: "User created successfully",
       });

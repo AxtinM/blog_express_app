@@ -126,11 +126,11 @@ function FuncEditorComp() {
         if (err.response.status === 401) {
           Notification("error", "😕 Try Loggin In! 😕");
           console.log("Unauthorized");
-          dispatch(handleError(err.response.data.message));
+          // dispatch(handleError(err.response.data.message));
           dispatch(logout());
         } else {
           Notification("error", "😕 Server Error! 😕");
-          dispatch(handleError(err.response.data.message));
+          // dispatch(handleError(err.response.data.message));
         }
       });
   };
