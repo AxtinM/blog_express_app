@@ -8,6 +8,7 @@ import EnterComponent from "../components/EnterComponent";
 import SiteBranding from "../components/SiteBranding";
 import ProfileImage from "../static/images/me_pic3.jpg";
 import configData from "../config";
+import { PAUSE } from "redux-persist";
 
 const MyResume = `${configData.BASE_URL}/resumes/mohamed_attig_cv.pdf`;
 
@@ -34,19 +35,19 @@ export default function Home() {
   const date = new Date();
 
   const [time, setTime] = useState(getTime(date));
-  const [quote, setQuote] = useState();
+  // const [quote, setQuote] = useState();
   // const [isFetching, setIsFetching] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [onLanding, setOnLanding] = useState(true);
   const getQuotes = async () => {
-    const data = await fetch("https://type.fit/api/quotes")
-      .then((res) => {
-        const data = res.json();
-        return data;
-      })
-      .catch((err) => console.log(err));
-    // const random = Math.floor(Math.random() * 100);
-    setQuote(data[6]);
+    // const data = await fetch("https://type.fit/api/quotes")
+    //   .then((res) => {
+    //     const data = res.json();
+    //     return data;
+    //   })
+    //   .catch((err) => console.log(err));
+    // // const random = Math.floor(Math.random() * 100);
+    // setQuote(data[6]);
     setTimeout(() => {
       console.log("timeout done");
       setIsLoading(true);
@@ -82,19 +83,14 @@ export default function Home() {
                 <blockquote>
                   <Typewriter
                     onInit={(typewriter) => {
-                      typewriter.typeString(quote.text).pauseFor(1000).start();
+                      typewriter
+                        .changeDelay(50)
+                        .typeString(
+                          "That which does not kill us makes us stronger."
+                        )
+                        .start();
                     }}
                   />
-                  {/* <footer>
-                    <cite>
-                      <Typewriter
-                        skipAddStyles={true}
-                        onInit={(typewriter) => {
-                          typewriter.typeString(quote.author).start();
-                        }}
-                      />
-                    </cite>
-                  </footer> */}
                 </blockquote>
               </span>
             </span>
