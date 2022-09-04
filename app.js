@@ -23,7 +23,11 @@ app.set("port", process.env.PORT || 8000);
 app.use("/api", indexRoutes);
 
 if (process.env.NODE_ENV == "production") {
+<<<<<<< HEAD
 app.use(express.static(path.join(__dirname, "client", "build")));
+=======
+  app.use(express.static(path.join(__dirname, "client", "build")));
+>>>>>>> 8f19dec44d6086bad07930a4e250f8a3d52cb8dd
 }
 
 app.get("/*", (req, res) => {
