@@ -43,9 +43,10 @@ function Profile() {
   const [width, height] = useWindowSize();
 
   const ProfileMenuSpring = useSpring({
-    transform: profileMenu ? "translateY(5.5em)" : "translateY(-5em)",
+    transform: profileMenu ? "translateY(5.5em)" : "translateY(-25em)",
     opacity: profileMenu ? "1" : "0",
     height: profileMenu ? "18em" : "0",
+    display: "block",
   });
 
   const user = useSelector(selectUser);
@@ -67,7 +68,6 @@ function Profile() {
           headers: { Authorization: `Bearer ${user.user.token}` },
         }
       );
-      const data = await res.data;
       dispatch(logout());
       await clearStorage();
     } catch (err) {
